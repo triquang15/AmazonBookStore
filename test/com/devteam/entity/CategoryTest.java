@@ -7,13 +7,13 @@ import javax.persistence.Persistence;
 public class CategoryTest {
 
 	public static void main(String[] args) {
-		Category newCat = new Category();
+		Category newCat = new Category("Advanced Java");
 		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(null);
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AmazonBookStore");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.getTransaction().begin();
-		entityManager.persist(entityManager);
+		entityManager.persist(newCat);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		entityManagerFactory.close();
