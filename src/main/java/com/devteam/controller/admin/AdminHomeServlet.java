@@ -9,24 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AdminHomeServlet
- */
+
 @WebServlet("/admin/")
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public AdminHomeServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+        super();      
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String homePage = "index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(homePage);
