@@ -32,9 +32,9 @@ public class UserDAOTest {
 	@Test
 	public void testCreateUsers() {
 		Users users = new Users();
-		users.setEmail("tomy@gmail.com");
-		users.setFullName("Tomy");
-		users.setPassword("aaaaaaa");
+		users.setEmail("tomy1@gmail.com");
+		users.setFullName("Tomy1");
+		users.setPassword("bbbbb");
 	
 		users = userDAO.create(users);
 		assertTrue(users.getUserId() > 0);
@@ -111,6 +111,13 @@ public class UserDAOTest {
 	public void testCountAll() {
 		long totalUsers = userDAO.count();
 		assertEquals(3, totalUsers);
+	}
+	
+	@Test
+	public void findByEmail() {
+		String email = "david@gmail.com";
+		Users users = userDAO.findByEmail(email);
+		assertNotNull(users);
 	}
 	
 	@AfterClass

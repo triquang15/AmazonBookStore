@@ -6,36 +6,80 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manager Users - Amazon Book Store</title>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 </head>
-<body>
+<body class="g-sidenav-show  bg-gray-200">
+<jsp:directive.include file="sidebar.jsp" />
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+	<jsp:directive.include file="navbar.jsp" />
+
+	<div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h5 class="text-white text-capitalize ps-3">Users Management</h5>
+                <h6>${message }</h6>
+              </div>
+            </div>
+            <a href="">Create New User</a>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0" align="center">
+                  <thead>
+                    <tr>
+                      <th class="text-secondary opacity-7">UserId</th>
+                      <th class="text-secondary opacity-7">Email</th>
+                      <th class="text-secondary opacity-7">Full Name</th>
+                      <th class="text-secondary opacity-7">Action</th>
+                    </tr>
+                  </thead>
+                  <c:forEach var="user" items="${listUsers }">
+                  <tbody>
+                    <tr>
+                      <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${user.userId }</p>
+                        </div>
+                      </td>    
+                      <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${user.email }</p>
+                        </div>
+                      </td>
+                      <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                      		<p class="text-xs font-weight-bold mb-0">${user.fullName }</p>  
+                      	</div>
+                      </td>
+                      
+                      <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                   
+                  </tbody>
+                  </c:forEach>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 	
-	<div align="center">
-		<h2>Users Management</h2>
-		<a href="">Create New User</a>
-	</div>
 	
-	<div align="center">
-		<table border="1">
-			<tr>
-				<th>Index</th>
-				<th>Id</th>
-				<th>Email</th>
-				<th>Full Name</th>
-				<th>Actions</th>
-			</tr>
-			<c:forEach var="user" items="${listUsers }" varStatus="status">
-				<tr>
-					<td>${status.index }</td>
-					<td>${user.userId }</td>
-					<td>${user.email }</td>
-					<td>${user.fullName }</td>
-					<td>
-						<a href="">Edit</a> |
-						<a href="">Delete</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</div>
+		
+	</main>
 </body>
 </html>
