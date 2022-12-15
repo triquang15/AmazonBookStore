@@ -18,6 +18,7 @@ public class UsersTest {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 		entityManager.getTransaction().begin();
+		entityManager.persist(users);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		entityManagerFactory.close();
