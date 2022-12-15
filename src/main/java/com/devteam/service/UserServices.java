@@ -66,4 +66,42 @@ public class UserServices {
 			listUser("new user created successfully");
 		}
 	}
+	
+	public void editUser() throws ServletException, IOException {
+		Integer userId = Integer.parseInt(request.getParameter("id"));
+		Users user = userDAO.get(userId);
+		
+		String editPage = "user_edit_form.jsp";
+		request.setAttribute("user", user);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response); 
+	}
+	
+	public void updateUser() throws ServletException, IOException {
+		Integer userId = Integer.parseInt(request.getParameter("userId")) ;
+		String email = request.getParameter("email");
+		String fullName = request.getParameter("fullName");
+		String password = request.getParameter("password");
+		
+		Users userById = userDAO.get(userId);
+		
+		Users userByEmail = userDAO.findByEmail(email);
+		
+		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
+			String message = "Count not update user. User with email " + email + "already exists.";
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+			
+		}else {
+			Users users = new Users(userId, email, fullName, password);
+			userDAO.update(users);
+			String message = "Users has been updated successfully";
+			listUser(message);
+		}
+		
+		
+		
+		
+	}
 }
