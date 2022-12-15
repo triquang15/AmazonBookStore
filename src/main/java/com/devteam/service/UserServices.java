@@ -99,9 +99,13 @@ public class UserServices {
 			String message = "Users has been updated successfully";
 			listUser(message);
 		}
+	}
+	
+	public void deleteUser() throws ServletException, IOException {
+		int userId = Integer.parseInt(request.getParameter("id"));
+		userDAO.delete(userId);
 		
-		
-		
-		
+		String message = "User has been delete successfully";
+		listUser(message);
 	}
 }

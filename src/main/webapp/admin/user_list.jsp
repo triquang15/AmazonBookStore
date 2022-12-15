@@ -66,7 +66,7 @@
                         <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>&nbsp;
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="javascript:confirmDelete(${user.userId })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Delete
                         </a>
                       </td>
@@ -80,9 +80,15 @@
           </div>
         </div>
       </div>
+	</main>	
 	
-	
-		
-	</main>
+<script type="text/javascript">
+ function confirmDelete(userId){
+	 if(confirm('are you sure you want to delete the user with ID' + userId + '?' )){
+		 window.location = 'delete_user?id=' + userId;
+	 }
+ }
+</script>
 </body>
+
 </html>
