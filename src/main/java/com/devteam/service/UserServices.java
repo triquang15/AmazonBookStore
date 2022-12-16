@@ -56,14 +56,14 @@ public class UserServices {
 		
 		Users existUser = userDAO.findByEmail(email);
 		if(existUser != null) {
-			String message = "Count not create user. A user with email " + email + "already exists";
+			String message = "User with email " + email + " already exists";
 			request.setAttribute("message", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("message.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("user_form.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			Users newUser = new Users(email, fullName, password);
 			userDAO.create(newUser);
-			listUser("new user created successfully");
+			listUser("New user created successfully");
 		}
 	}
 	
@@ -88,9 +88,9 @@ public class UserServices {
 		Users userByEmail = userDAO.findByEmail(email);
 		
 		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
-			String message = "Count not update user. User with email " + email + "already exists.";
+			String message = "User with email " + email + "already exists.";
 			request.setAttribute("message", message);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_edit_form.jsp");
 			requestDispatcher.forward(request, response);
 			
 		}else {

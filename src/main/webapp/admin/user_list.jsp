@@ -20,27 +20,28 @@
 <body class="g-sidenav-show  bg-gray-200">
 <jsp:directive.include file="sidebar.jsp" />
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-	<jsp:directive.include file="navbar.jsp" />
+<br>
 
 	<div class="row">
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5 class="text-white text-capitalize ps-3">Users Management</h5>   
+                <h5><a class="text-white text-capitalize ps-3" href="user_form.jsp">Users Management</a></h5>   
               </div>
-            </div>
-            <h6>${message }</h6>
-            <a href="user_form.jsp">Create New User</a>
+            </div> <br>
+            
+            <h5 class="text-center" style="color: #32CD32;">${message }</h5>
+           
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0" align="center">
+                <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-secondary opacity-7">UserId</th>
-                      <th class="text-secondary opacity-7">Email</th>
-                      <th class="text-secondary opacity-7">Full Name</th>
-                      <th class="text-secondary opacity-7">Action</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Full Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
                   <c:forEach var="user" items="${listUsers }">
@@ -63,11 +64,14 @@
                       </td>
                       
                       <td class="align-middle">
-                        <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
+                       <a href="user_form.jsp" class="text-secondary font-weight-bold text-xs">
+                          <i class="fa fa-plus">&nbsp;Add</i> |
                         </a>&nbsp;
-                        <a href="javascript:confirmDelete(${user.userId })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Delete
+                        <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;Edit</i> |
+                        </a>&nbsp;
+                        <a href="javascript:confirmDelete(${user.userId })" class="text-secondary font-weight-bold text-xs">
+                          <i class="fa fa-trash-o" aria-hidden="true" style="color: red;">&nbsp;Delete</i>
                         </a>
                       </td>
                     </tr>
@@ -84,7 +88,7 @@
 	
 <script type="text/javascript">
  function confirmDelete(userId){
-	 if(confirm('are you sure you want to delete the user with ID' + userId + '?' )){
+	 if(confirm('Are you sure you want to delete the user with ID' + userId + '?' )){
 		 window.location = 'delete_user?id=' + userId;
 	 }
  }

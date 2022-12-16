@@ -20,7 +20,6 @@
 <body class="g-sidenav-show  bg-gray-200">
 <jsp:directive.include file="sidebar.jsp" />
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-	<jsp:directive.include file="navbar.jsp" />
 
 	<main class="main-content  mt-0">
     <section>
@@ -37,6 +36,8 @@
                   <h4 class="font-weight-bolder">Sign Up</h4>
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
+                <br>
+                <p class="text-center" style="color: red;">${message }</p> <br>
                 <div class="card-body">
                   <form action="create_user" method="post" onsubmit="return validateFormInput()" role="form">
                   	<div class="input-group input-group-outline mb-3">
@@ -60,16 +61,11 @@
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign Up</button>
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" onclick="javascript:history.go(-1);">Back</button>
+                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" onclick="javascript:history.go(-1);">Cancel</button>
                     </div>
                   </form>
                 </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-2 text-sm mx-auto">
-                    Already have an account?
-                    <a href="sign_in.jsp" class="text-primary text-gradient font-weight-bold">Sign in</a>
-                  </p>
-                </div>
+                
               </div>
             </div>
           </div>

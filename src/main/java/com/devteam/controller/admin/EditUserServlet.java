@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.devteam.service.UserServices;
 
-
 @WebServlet("/admin/edit_user")
 public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServices userServices;
 
-    public EditUserServlet() {
-        super();
-       
-    }
+	public EditUserServlet() {
+		super();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		userServices = new UserServices(request, response);
 		userServices.editUser();
 	}
-
-	
 
 }

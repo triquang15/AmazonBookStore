@@ -20,7 +20,6 @@
 <body class="g-sidenav-show  bg-gray-200">
 <jsp:directive.include file="sidebar.jsp" />
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-	<jsp:directive.include file="navbar.jsp" />
 
 	<main class="main-content  mt-0">
     <section>
@@ -29,8 +28,10 @@
           <div class="row">
               <div class="card card-plain">
                 <div class="card-header">
-                  <h4 class="font-weight-bolder">Edit User</h4>
+                  <h4 class="font-weight-bolder">Update User</h4>
                 </div>
+                 <br>
+                <p class="text-center" style="color: red;">${message }</p> <br>
                 <div class="card-body">
                   <form action="update_user" method="post" onsubmit="return validateFormInput()" role="form">
                   <input type="hidden" name="userId" id="userId" value="${user.userId }">
@@ -45,8 +46,8 @@
                       <input type="password" id="password" name="password" value="${user.password }" class="form-control" placeholder="Password"> 
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Save</button>
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" onclick="javascript:history.go(-1);">Back</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary">Update</button> &nbsp;&nbsp;&nbsp;
+                      <button type="button" class="btn btn-lg bg-gradient-primary " onclick="javascript:history.go(-1);">Cancel</button>
                     </div>
                   </form>
                 </div>      
