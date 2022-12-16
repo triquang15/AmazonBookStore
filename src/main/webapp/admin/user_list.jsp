@@ -27,11 +27,11 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5 class="text-white text-capitalize ps-3">Users Management</h5>
-                <h6>${message }</h6>
+                <h5 class="text-white text-capitalize ps-3">Users Management</h5>   
               </div>
             </div>
-            <a href="">Create New User</a>
+            <h6>${message }</h6>
+            <a href="user_form.jsp">Create New User</a>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0" align="center">
@@ -63,8 +63,11 @@
                       </td>
                       
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           Edit
+                        </a>&nbsp;
+                        <a href="javascript:confirmDelete(${user.userId })" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Delete
                         </a>
                       </td>
                     </tr>
@@ -77,9 +80,15 @@
           </div>
         </div>
       </div>
+	</main>	
 	
-	
-		
-	</main>
+<script type="text/javascript">
+ function confirmDelete(userId){
+	 if(confirm('are you sure you want to delete the user with ID' + userId + '?' )){
+		 window.location = 'delete_user?id=' + userId;
+	 }
+ }
+</script>
 </body>
+
 </html>
