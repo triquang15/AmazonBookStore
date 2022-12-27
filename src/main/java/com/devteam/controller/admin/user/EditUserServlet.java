@@ -1,4 +1,4 @@
-package com.devteam.controller.admin;
+package com.devteam.controller.admin.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
