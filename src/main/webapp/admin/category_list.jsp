@@ -57,10 +57,10 @@
                         </div>
                       </td>
                       <td class="align-middle">
-                       <a href="user_form.jsp" class="text-secondary font-weight-bold text-xs">
+                       <a href="category_form.jsp" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-plus">&nbsp;Add</i> |
                         </a>&nbsp;
-                        <a href="edit_user?id=${category.categoryId}" class="text-secondary font-weight-bold text-xs">
+                        <a href="edit_category?id=${category.categoryId}" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;Edit</i> |
                         </a>&nbsp;
                         <a href="javascript:confirmDelete(${category.categoryId })" class="text-secondary font-weight-bold text-xs">

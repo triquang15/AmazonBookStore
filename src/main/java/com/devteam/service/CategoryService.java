@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.devteam.dao.CategoryDAO;
 import com.devteam.entity.Category;
+import com.devteam.entity.Users;
 
 public class CategoryService {
 	private EntityManager entityManager;
@@ -50,17 +51,51 @@ public class CategoryService {
 		if(existCategory != null ) {
 			String message = "Could not create category. " + "A category with name " + name + "already exists.";
 			request.setAttribute("message", message);
-			String listPage = "category_form.jsp";
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+			String createPage = "category_form.jsp";
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(createPage);
 			requestDispatcher.forward(request, response);
 		}else {
 			Category category = new Category(name);
 			categoryDAO.create(category);
 			listCategory("New category created successfully");
 		}
+	}
+	
+	public void editCategory() throws ServletException, IOException {
+		int categoryID = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDAO.get(categoryID);
 		
+		String editPage = "category_edit_form.jsp";
+		request.setAttribute("category", category);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+	}
+	
+	public void updateCategory() throws IOException, ServletException {
+		int categoryID = Integer.parseInt(request.getParameter("categoryId"));
+		String name = request.getParameter("name");
 		
+		Category categoryById = categoryDAO.get(categoryID);
+		Category categoryByName = categoryDAO.findByName(name);
+		if(categoryByName != null && categoryById.getCategoryId() != categoryByName.getCategoryId()) {
+			String message = "Could not update category. " + "A category with name " + name + " already exists.";
+			request.setAttribute("message", message);
 		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("category_edit_form.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			categoryById.setName(name);
+			categoryDAO.update(categoryById);
+			String message = "Category update successfully";
+			listCategory(message);
+		}
+	}
+	
+	public void deleteCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		categoryDAO.delete(categoryId);
+		String message = "Category has been delele successfully";
+		listCategory(message);
 	}
 
 }
