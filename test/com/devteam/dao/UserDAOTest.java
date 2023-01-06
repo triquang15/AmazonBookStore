@@ -17,8 +17,7 @@ import org.junit.Test;
 import com.devteam.entity.Users;
 
 public class UserDAOTest extends BaseDAOTest {
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+
 	private static UserDAO userDAO;
 	
 	@BeforeClass
@@ -114,8 +113,8 @@ public class UserDAOTest extends BaseDAOTest {
 	
 	@Test
 	public void checkLoginSuccess() {
-		String email = "loc@gmail.com";
-		String password = "1234567";
+		String email = "quangtri.nguyen@dxc.com";
+		String password = "12345678";
 		boolean loginResult = userDAO.checkLogin(email, password);
 		assertTrue(loginResult);
 	}
