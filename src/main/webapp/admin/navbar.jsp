@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
@@ -18,9 +19,22 @@
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Online Builder</a>
             </li>
             <li class="nav-item d-flex align-items-center">
+                <span class="d-sm-inline d-none">Welcome,
+                <c:if test="${useremail != null }">
+                	<c:out value="${sessionScope.useremail }"></c:out> &nbsp;
+                </c:if> 
+                </span>
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
               <a href="sign_in.jsp" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <span class="d-sm-inline d-none">Sign In</span> &nbsp;
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a href="logout" class="nav-link text-body font-weight-bold px-0">
+                <span class="d-sm-inline d-none">LogOut</span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
