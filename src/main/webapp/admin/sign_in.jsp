@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +23,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+  <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
 </head>
 
 <body class="bg-gray-200">
@@ -44,7 +47,7 @@
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="#">
+                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="index.jsp">
                     <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
                     Dashboard
                   </a>
@@ -56,7 +59,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="#">
+                  <a class="nav-link me-2" href="sign_up.jsp">
                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                     Sign Up
                   </a>
@@ -103,24 +106,32 @@
                       </a>
                     </div>
                   </div>
+                 <c:if test="${message != null }">
+                 	<div align="center">
+                 		<h4 style="color: red">${message }</h4>
+                	</div>
+                 	
+                 </c:if>
+                  
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
+                <form id="loginForm" action="login" method="post" role="form" class="text-start">
+                
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control">
+                    
+                    <input type="email" id="email" name="email" placeholder="Your Email" class="form-control">
                   </div>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control">
+                    
+                    <input type="password" id="password" name="password" placeholder="Your Password" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                     <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
                   </div>
                   
                 </form>
@@ -169,6 +180,27 @@
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
+  	$(document).ready(function(){
+  		$("#loginForm").validate({
+  			rules: {
+  				email: {
+  					required: true,
+  					email: true
+  				},
+  				password: "required",
+  			},
+  			
+  			message: {
+  				email: {
+  					required: "Please enter email",
+  					email: "Please enter an valid email address"
+  				},
+  				
+  				password: "Please enter password"
+  			}
+  		});
+  	});
+  
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {

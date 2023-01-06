@@ -41,6 +41,7 @@
         <!-- Header Start -->
 	<jsp:directive.include file="header.jsp" />
         <!-- Header End -->
+
     </header>
     <main>
         <!--? slider Area Start -->

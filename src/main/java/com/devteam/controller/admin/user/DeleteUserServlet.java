@@ -1,4 +1,4 @@
-package com.devteam.controller.admin;
+package com.devteam.controller.admin.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.devteam.service.UserServices;
 
-
-@WebServlet("/admin/update_user")
-public class UpdateUserServlet extends HttpServlet {
+@WebServlet("/admin/delete_user")
+public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServices userServices;
-
-    public UpdateUserServlet() {
-        super();
+       
+ 
+    public DeleteUserServlet() {
+        super();     
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		userServices = new UserServices(request, response);
-		userServices.updateUser();
+		userServices.deleteUser();
+	
 	}
 
 }

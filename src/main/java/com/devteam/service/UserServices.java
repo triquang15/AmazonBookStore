@@ -27,17 +27,16 @@ public class UserServices {
 		this.response = response;
 		entityManagerFactory = Persistence.createEntityManagerFactory("AmazonBookStore");
 		entityManager = entityManagerFactory.createEntityManager();
-		
 		userDAO = new UserDAO(entityManager);
 	}
 	
 	public void listUser() throws ServletException, IOException {
 		listUser(null);
+		
 	}
 	
 	public void listUser(String message) throws ServletException, IOException {
 		List<Users> lisUsers = userDAO.listAll();
-		
 		request.setAttribute("listUsers", lisUsers);
 		if(message != null) {
 			request.setAttribute("message", message);
@@ -46,8 +45,9 @@ public class UserServices {
 		String listpage = "user_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listpage);
 		requestDispatcher.forward(request, response);
-	
+
 	}
+	
 	
 	public void createUser() throws ServletException, IOException {
 		String email = request.getParameter("email");
@@ -65,6 +65,7 @@ public class UserServices {
 			userDAO.create(newUser);
 			listUser("New user created successfully");
 		}
+		
 	}
 	
 	public void editUser() throws ServletException, IOException {
@@ -107,5 +108,23 @@ public class UserServices {
 		
 		String message = "User has been delete successfully";
 		listUser(message);
+	}
+	
+	public void login() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		boolean loginResult = userDAO.checkLogin(email, password);
+		if(loginResult) {
+			request.getSession().setAttribute("useremail", email);
+			String loginSuccessPage = "/admin/";
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginSuccessPage);
+			requestDispatcher.forward(request, response);
+		}else {
+			String message = "Please check your username and password again";
+			request.setAttribute("message", message);
+			String signInPage = "sign_in.jsp";
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(signInPage);
+			requestDispatcher.forward(request, response);
+		}
 	}
 }

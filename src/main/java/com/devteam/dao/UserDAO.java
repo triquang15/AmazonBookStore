@@ -1,8 +1,11 @@
 package com.devteam.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.devteam.entity.Users;
 
@@ -33,6 +36,19 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	 		return listUsers.get(0);
 	 	}
 	 	return null;
+	}
+	
+	public boolean checkLogin(String email, String password) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("email", email);
+		parameters.put("password", password);
+		
+		List<Users> listUsers = super.findWithNameQuery("Users.checkLogin", parameters);
+		
+		if(listUsers.size() == 1) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

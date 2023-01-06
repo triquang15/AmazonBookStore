@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.devteam.service.UserServices;
 
-@WebServlet("/admin/delete_user")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/admin/login")
+public class AdminLoginServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServices userServices;
-       
- 
-    public DeleteUserServlet() {
-        super();     
-    }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  
+  
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		userServices = new UserServices(request, response);
-		userServices.deleteUser();
-	
+		userServices.login();
+
 	}
 
 }

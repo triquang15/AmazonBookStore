@@ -31,7 +31,7 @@ public class UserDAOTest extends BaseDAOTest {
 	@Test
 	public void testCreateUsers() {
 		Users users = new Users();
-		users.setEmail("tomy1@gmail.com");
+		users.setEmail("tomy123@gmail.com");
 		users.setFullName("Tomy1");
 		users.setPassword("bbbbb");
 	
@@ -82,7 +82,7 @@ public class UserDAOTest extends BaseDAOTest {
 	
 	@Test
 	public void testDeleteUsers() {
-		Integer userId = 4;
+		Integer userId = 6;
 		userDAO.delete(userId);
 		
 		Users user = userDAO.get(userId);
@@ -113,10 +113,19 @@ public class UserDAOTest extends BaseDAOTest {
 	}
 	
 	@Test
+	public void checkLoginSuccess() {
+		String email = "loc@gmail.com";
+		String password = "1234567";
+		boolean loginResult = userDAO.checkLogin(email, password);
+		assertTrue(loginResult);
+	}
+	
+	@Test
 	public void findByEmail() {
 		String email = "david@gmail.com";
 		Users users = userDAO.findByEmail(email);
 		assertNotNull(users);
+		//assertNull(users);
 	}
 	
 	@AfterClass
