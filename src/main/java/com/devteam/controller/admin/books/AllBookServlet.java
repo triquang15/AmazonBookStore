@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.devteam.controller.admin.BaseServlet;
+import com.devteam.service.BookService;
 
 /**
  * Servlet implementation class AllBookServlet
@@ -16,20 +17,12 @@ import com.devteam.controller.admin.BaseServlet;
 public class AllBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AllBookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		BookService bookService = new BookService(entityManager, request, response);
+		bookService.listBooks();
 	}
 
 }
