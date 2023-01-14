@@ -45,13 +45,14 @@ public class CategoryService {
 		
 	}
 	
-	public void createUser() throws ServletException, IOException {
+	public void createCategory() throws ServletException, IOException {
 		String name = request.getParameter("name");
 		Category existCategory = categoryDAO.findByName(name);
 		if(existCategory != null ) {
 			String message = "Could not create category. " + "A category with name " + name + "already exists.";
 			request.setAttribute("message", message);
 			String createPage = "category_form.jsp";
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(createPage);
 			requestDispatcher.forward(request, response);
 		}else {
