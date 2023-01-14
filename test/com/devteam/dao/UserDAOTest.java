@@ -14,6 +14,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.devteam.controller.base.HashGenerator;
 import com.devteam.entity.Users;
 
 public class UserDAOTest extends BaseDAOTest {
@@ -113,8 +114,16 @@ public class UserDAOTest extends BaseDAOTest {
 	
 	@Test
 	public void checkLoginSuccess() {
-		String email = "quangtri.nguyen@dxc.com";
-		String password = "12345678";
+		String email = "admin@gmail.com";
+		String password = "12345";
+		boolean loginResult = userDAO.checkLogin(email, password);
+		assertTrue(loginResult);
+	}
+	
+	@Test
+	public void checkLoginSuccessEncrypt() {
+		String email = "test@gmail.com";
+		String password = "12345";
 		boolean loginResult = userDAO.checkLogin(email, password);
 		assertTrue(loginResult);
 	}

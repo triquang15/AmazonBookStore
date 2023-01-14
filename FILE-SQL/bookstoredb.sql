@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `bookstoredb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `bookstoredb`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bookstoredb
@@ -93,11 +91,11 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `category_id` int NOT NULL,
+  `category_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `category_id_UNIQUE` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,6 +104,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Java Core'),(3,'Python'),(4,'csharp'),(5,'adadad'),(20,'cccc'),(21,'ruby');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,10 +213,10 @@ CREATE TABLE `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(30) NOT NULL,
   `full_name` varchar(30) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` varchar(64) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,6 +225,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'david@gmail.com','David Beckham','mysecret1'),(2,'david@gmail.com','David Beckham','mysecret1'),(3,'tomy@gmail.com','Tomy','827ccb0eea8a706c4c34a16891f84e7b'),(5,'tomy1@gmail.com','Tomy1','bbbbb'),(6,'addmin2@gmail.com','bb','12345678'),(8,'admin@gmail.com','admin22','12345'),(9,'loc@gmail.com','loc','1234567'),(11,'loc1@gmail.com','asdadadad','123456789'),(14,'admin4@gmail.com','bb','12345678'),(26,'test2@gmail.com','asdadadad','12345'),(27,'test3@gmail.com','aaaaaaaaaa','827ccb0eea8a706c4c34a16891f84e7b'),(28,'test@gmail.com','aaaaaaaaaa','827ccb0eea8a706c4c34a16891f84e7b');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -238,4 +238,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-09 16:37:36
+-- Dump completed on 2023-01-14  2:02:22
+

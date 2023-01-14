@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.devteam.controller.base.HashGenerator;
 import com.devteam.dao.UserDAO;
 import com.devteam.entity.Users;
 
@@ -95,8 +96,17 @@ public class UserServices {
 			requestDispatcher.forward(request, response);
 			
 		}else {
-			Users users = new Users(userId, email, fullName, password);
-			userDAO.update(users);
+			userById.setEmail(email);
+			userById.setFullName(fullName);
+			if(password != null && !password.isEmpty()) {
+				String encryptPassword = HashGenerator.generateMD5(password); 
+				userById.setPassword(encryptPassword);
+			}
+			
+//			Users users = new Users(userId, email, fullName, password);
+//			userDAO.update(users);
+			
+			userDAO.update(userById);
 			String message = "Users has been updated successfully";
 			listUser(message);
 		}

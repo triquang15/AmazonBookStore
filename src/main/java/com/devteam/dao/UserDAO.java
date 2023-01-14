@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.devteam.controller.base.HashGenerator;
 import com.devteam.entity.Users;
 
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
@@ -17,6 +18,8 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	}
 	
 	public Users create(Users user) {
+		String encryptedPassword = HashGenerator.generateMD5(user.getPassword());
+		user.setPassword(encryptedPassword);
 		return super.create(user);
 	}
 
@@ -40,8 +43,9 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	
 	public boolean checkLogin(String email, String password) {
 		Map<String, Object> parameters = new HashMap<>();
+		String encryptedPassword = HashGenerator.generateMD5(password);
 		parameters.put("email", email);
-		parameters.put("password", password);
+		parameters.put("password", encryptedPassword);
 		
 		List<Users> listUsers = super.findWithNameQuery("Users.checkLogin", parameters);
 		
