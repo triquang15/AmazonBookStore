@@ -23,7 +23,7 @@ public class CreateCategoryServlet extends BaseServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		categoryService =  new CategoryService(entityManager, request, response);
-		categoryService.createUser();
+		categoryService.createCategory();
 	}
 
 }

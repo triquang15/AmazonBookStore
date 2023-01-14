@@ -105,16 +105,18 @@
                         <i class="fa fa-google text-white text-lg"></i>
                       </a>
                     </div>
-                  </div>
-                 <c:if test="${message != null }">
+                  </div>                               
+                </div>
+              </div>
+              <br>
+              
+               <c:if test="${message != null }">
                  	<div align="center">
-                 		<h4 style="color: red">${message }</h4>
+                 		<p style="color: red">${message }</p>
                 	</div>
                  	
                  </c:if>
-                  
-                </div>
-              </div>
+                 
               <div class="card-body">
                 <form id="loginForm" action="login" method="post" role="form" class="text-start">
                 
