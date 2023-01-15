@@ -27,7 +27,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3" href="user_form.jsp">Management Books</a></h5>   
+                <h5><a class="text-white text-capitalize ps-3" href="new_book">Management Books</a></h5>   
               </div>
             </div> <br>
             
@@ -82,7 +82,7 @@
                       </td>
                       
                       <td class="align-middle">
-                       <a href="user_form.jsp" class="text-secondary font-weight-bold text-xs">
+                       <a href="new_book" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-plus">&nbsp;Add</i> |
                         </a>&nbsp;
                         <a href="edit_book?id=${book.bookId}" class="text-secondary font-weight-bold text-xs">
