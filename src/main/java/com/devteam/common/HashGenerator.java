@@ -1,4 +1,4 @@
-package com.devteam.controller.base;
+package com.devteam.common;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.devteam.controller.admin.BaseServlet;
 import com.devteam.service.CategoryService;
 
 @WebServlet("/admin/update_category")
-public class UpdateCategoryServlet extends BaseServlet {
+public class UpdateCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private CategoryService categoryService;   
 
-    public UpdateCategoryServlet() {
-        super();   
-    }
+	public UpdateCategoryServlet() {
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		categoryService = new CategoryService(entityManager, request, response);
-		categoryService.updateCategory();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		CategoryService categoryServices = new CategoryService(request, response);
+		categoryServices.updateCategory();
 	}
 
 }

@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.devteam.controller.admin.BaseServlet;
 import com.devteam.service.BookService;
 
 /**
  * Servlet implementation class NewBookServlet
  */
 @WebServlet("/admin/new_book")
-public class NewBookServlet extends BaseServlet {
+public class NewBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -29,7 +28,7 @@ public class NewBookServlet extends BaseServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookService bookService = new BookService(entityManager, request, response);
+		BookService bookService = new BookService(request, response);
 		bookService.showBookNewForm();
 	}
 

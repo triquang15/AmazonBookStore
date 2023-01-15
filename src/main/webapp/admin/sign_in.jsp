@@ -9,6 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  
+   <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
   <title>
     Amazon Book Store
   </title>
@@ -35,7 +38,7 @@
         <nav class="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid ps-2 pe-0">
             <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="#">
-              Online Book Store
+              Online Book Store 
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon mt-2">
@@ -126,7 +129,7 @@
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     
-                    <input type="password" id="password" name="password" placeholder="Your Password" class="form-control">
+                    <input type="password" id="password" name="password" placeholder="Your Password" size="20" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
@@ -181,40 +184,31 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-  	$(document).ready(function(){
-  		$("#loginForm").validate({
-  			rules: {
-  				email: {
-  					required: true,
-  					email: true
-  				},
-  				password: "required",
-  			},
-  			
-  			message: {
-  				email: {
-  					required: "Please enter email",
-  					email: "Please enter an valid email address"
-  				},
-  				
-  				password: "Please enter password"
-  			}
-  		});
-  	});
-  
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.0.4"></script>
+  <script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#loginForm").validate({
+			rules: {
+				email: {
+					required: true,
+					email: true
+				},
+		
+				password: "required",
+			},
+			
+			messages: {
+				email: {
+					required: "Please enter email",
+					email: "Please enter an valid email address"
+				},
+				
+				password: "Please enter password"
+			}
+		});
+
+	});
+</script>
 </body>
 
 </html>

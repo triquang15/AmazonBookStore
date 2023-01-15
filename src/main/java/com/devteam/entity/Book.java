@@ -31,10 +31,16 @@ import com.paypal.base.codec.binary.Base64;
 @NamedQueries({
 	@NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
 	@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
-	@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b")
+	@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b"),
+	@NamedQuery(name = "Book.countByCategory", query = "SELECT COUNT(b) FROM Book b "
+			+ "WHERE b.category.categoryId = :catId")
 })
 public class Book implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer bookId;
 	private Category category;
 	private String title;

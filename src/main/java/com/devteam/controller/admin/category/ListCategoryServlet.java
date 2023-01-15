@@ -7,24 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.devteam.controller.admin.BaseServlet;
 import com.devteam.service.CategoryService;
 
 @WebServlet("/admin/list_category")
-public class ListCategoryServlet extends BaseServlet {
+public class ListCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CategoryService categoryService;
 
-    public ListCategoryServlet() {
-        super();
-       
-    }
+	public ListCategoryServlet() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		categoryService = new CategoryService(entityManager, request, response);
-		categoryService.listCategory();
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.getWriter().println("List Category");
+		CategoryService categoryServices = new CategoryService(request, response);
+		categoryServices.listCategory();
 	}
 
 }

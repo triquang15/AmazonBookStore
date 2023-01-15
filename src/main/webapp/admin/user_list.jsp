@@ -16,6 +16,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+   <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
 </head>
 <body class="g-sidenav-show  bg-gray-200">
 <jsp:directive.include file="sidebar.jsp" />
@@ -70,8 +72,8 @@
                         <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;Edit</i> |
                         </a>&nbsp;
-                        <a href="javascript:confirmDelete(${user.userId })" class="text-secondary font-weight-bold text-xs">
-                          <i class="fa fa-trash-o" aria-hidden="true" style="color: red;">&nbsp;Delete</i>
+                        <a href="javascript:void(0);" class="text-secondary font-weight-bold text-xs">
+                          <i class="fa fa-trash-o deleteLink" id="${user.userId}" aria-hidden="true" style="color: red;">&nbsp;Delete</i>
                         </a>
                       </td>
                     </tr>
@@ -86,13 +88,18 @@
       </div>
 	</main>	
 	
-<script type="text/javascript">
- function confirmDelete(userId){
-	 if(confirm('Are you sure you want to delete the user with ID' + userId + '?' )){
-		 window.location = 'delete_user?id=' + userId;
-	 }
- }
-</script>
+<script>
+		$(document).ready(function() {
+			$(".deleteLink").each(function() {
+				$(this).on("click", function() {
+					userId = $(this).attr("id");
+					if (confirm('Are you sure you want to delete the user with ID ' +  userId + '?')) {
+						window.location = 'delete_user?id=' + userId;
+					}					
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>
