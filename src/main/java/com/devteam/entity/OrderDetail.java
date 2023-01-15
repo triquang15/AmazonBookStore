@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -16,8 +17,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "order_detail", catalog = "bookstoredb")
+@NamedQuery(name = "OrderDetail.countByBook",
+query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.book.bookId =:bookId")
 public class OrderDetail implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private OrderDetailId id;
 	private Book book;
 	private BookOrder bookOrder;

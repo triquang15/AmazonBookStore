@@ -44,15 +44,17 @@
                    </c:if>
                 </div>
                  <br>
-                <p class="text-center" style="color: red;">${message }</p> <br>
+                 <c:if test="${message != null}">
+               		 <p class="text-center" style="color: red;">${message }</p>
+                	</c:if> <br>
                 <div class="card-body">
                	  <c:if test="${book != null }">
-                    <form action="update_book" method="post" role="form" id="bookForm">
+                    <form action="update_book" method="post" role="form" id="bookForm" enctype="multipart/form-data">
                     <input type="hidden" name="bookId" value="${book.bookId}">
                   </c:if>
                   
                    <c:if test="${book == null }">
-                    <form action="create_book" method="post" role="form" id="bookForm">
+                    <form action="create_book" method="post" role="form" id="bookForm" enctype="multipart/form-data">
                   </c:if>
                   
                   	<div class="input-group input-group-outline mb-3">                   
@@ -84,7 +86,7 @@
                   
                     <div class="input-group input-group-outline mb-3"> 
                       <input type="text" id="publishDate" name="publishDate" class="form-control"
-                       size="20" placeholder="Publish Date" value="<fmt:formatDate pattern='MM/dd/yyyy' value='${book.publishDate}' />" />
+                       size="20" placeholder="Publish Date" value="<fmt:formatDate pattern='MM/dd/yyyy' value='${book.published}' />" />
                     </div>    
                      <div class="mb-3"> 
                       <label for="formFile" class="form-label">File Image(*)</label>
@@ -94,7 +96,7 @@
 					 />
                     </div>                                 
                       <div class="input-group">
-                      	<textarea rows="3" cols="30" class="form-control" id="description" ></textarea>
+                      	<textarea rows="3" cols="30" class="form-control" id="description" name="description" >${book.description}</textarea>
                     </div>
                     
                    <br>
