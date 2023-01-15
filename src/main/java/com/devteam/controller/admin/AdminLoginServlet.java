@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.devteam.service.UserServices;
 
 @WebServlet("/admin/login")
-public class AdminLoginServlet extends BaseServlet {
+public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserServices userServices;
   

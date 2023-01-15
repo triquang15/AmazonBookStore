@@ -11,130 +11,145 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.devteam.controller.base.HashGenerator;
+import com.devteam.common.HashGenerator;
 import com.devteam.dao.UserDAO;
 import com.devteam.entity.Users;
 
 public class UserServices {
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	
-	
+
 	public UserServices(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		entityManagerFactory = Persistence.createEntityManagerFactory("AmazonBookStore");
-		entityManager = entityManagerFactory.createEntityManager();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 	}
-	
+
 	public void listUser() throws ServletException, IOException {
 		listUser(null);
-		
 	}
-	
+
 	public void listUser(String message) throws ServletException, IOException {
-		List<Users> lisUsers = userDAO.listAll();
-		request.setAttribute("listUsers", lisUsers);
-		if(message != null) {
+		List<Users> listUsers = userDAO.listAll();
+
+		request.setAttribute("listUsers", listUsers);
+
+		if (message != null) {
 			request.setAttribute("message", message);
 		}
-		
-		String listpage = "user_list.jsp";
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listpage);
+
+		String listPage = "user_list.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+
 		requestDispatcher.forward(request, response);
 
 	}
-	
-	
+
 	public void createUser() throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("fullName");
+		String fullName = request.getParameter("fullname");
 		String password = request.getParameter("password");
-		
+
 		Users existUser = userDAO.findByEmail(email);
-		if(existUser != null) {
+
+		if (existUser != null) {
 			String message = "User with email " + email + " already exists";
 			request.setAttribute("message", message);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user_form.jsp");
 			dispatcher.forward(request, response);
-		}else {
+		} else {
 			Users newUser = new Users(email, fullName, password);
 			userDAO.create(newUser);
 			listUser("New user created successfully");
 		}
-		
+
 	}
-	
+
 	public void editUser() throws ServletException, IOException {
-		Integer userId = Integer.parseInt(request.getParameter("id"));
+		int userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
-		
-		String editPage = "user_edit_form.jsp";
-		request.setAttribute("user", user);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
-		requestDispatcher.forward(request, response); 
+
+		String destPage = "user_form.jsp";
+
+		if (user == null) {
+			destPage = "message.jsp";
+			String errorMessage = "Could not find user with ID " + userId;
+			request.setAttribute("message", errorMessage);
+		} else {
+			request.setAttribute("user", user);
+		}
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
+		requestDispatcher.forward(request, response);
 	}
-	
+
 	public void updateUser() throws ServletException, IOException {
-		Integer userId = Integer.parseInt(request.getParameter("userId")) ;
+		int userId = Integer.parseInt(request.getParameter("userId"));
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("fullName");
+		String fullName = request.getParameter("fullname");
 		String password = request.getParameter("password");
-		
+
 		Users userById = userDAO.get(userId);
-		
+
 		Users userByEmail = userDAO.findByEmail(email);
-		
-		if(userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
+
+		if (userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
 			String message = "User with email " + email + "already exists.";
 			request.setAttribute("message", message);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_edit_form.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_form.jsp");
 			requestDispatcher.forward(request, response);
-			
-		}else {
+
+		} else {
 			userById.setEmail(email);
 			userById.setFullName(fullName);
-			if(password != null && !password.isEmpty()) {
-				String encryptPassword = HashGenerator.generateMD5(password); 
+			if (password != null && !password.isEmpty()) {
+				String encryptPassword = HashGenerator.generateMD5(password);
 				userById.setPassword(encryptPassword);
 			}
-			
-//			Users users = new Users(userId, email, fullName, password);
-//			userDAO.update(users);
-			
+
 			userDAO.update(userById);
 			String message = "Users has been updated successfully";
 			listUser(message);
 		}
 	}
-	
+
 	public void deleteUser() throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("id"));
-		userDAO.delete(userId);
 		
-		String message = "User has been delete successfully";
-		listUser(message);
+		Users user = userDAO.get(userId);
+		String message = "User has been deleted successfully";
+		
+		if (user == null) {
+			message = "Could not find user with ID " + userId
+					+ ", or it might have been deleted by another admin";
+			
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("user_form.jsp").forward(request, response);			
+		} else {
+			userDAO.delete(userId);
+			listUser(message);
+		}		
 	}
-	
+
 	public void login() throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
 		boolean loginResult = userDAO.checkLogin(email, password);
-		if(loginResult) {
+		
+		if (loginResult) {
 			request.getSession().setAttribute("useremail", email);
-			String loginSuccessPage = "/admin/";
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher(loginSuccessPage);
-			requestDispatcher.forward(request, response);
-		}else {
-			String message = "Please check your username and password again";
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+			
+		} else {
+			String message = "Incorrect account or password";
 			request.setAttribute("message", message);
-			String signInPage = "sign_in.jsp";
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher(signInPage);
-			requestDispatcher.forward(request, response);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("sign_in.jsp");
+			dispatcher.forward(request, response);			
 		}
 	}
 }

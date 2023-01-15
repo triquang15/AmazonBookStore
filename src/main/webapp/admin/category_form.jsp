@@ -16,6 +16,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+   <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
 </head>
 <body class="g-sidenav-show  bg-gray-200">
 <jsp:directive.include file="sidebar.jsp" />
@@ -28,13 +30,24 @@
           <div class="row">
               <div class="card card-plain">
                 <div class="card-header">
+                <c:if test="${category == null}">
                   <h4 class="font-weight-bolder">Create New Category</h4>
+                  </c:if>
+                   <c:if test="${category != null}">
+                  <h4 class="font-weight-bolder">Update Category</h4>
+                  </c:if>
                 </div>
                  <br>
                 <p class="text-center" style="color: red;">${message }</p> <br>
                 <div class="card-body">
-                  <form action="create_category" method="post" onsubmit="return validateFormInput()" role="form">
-                  <input type="hidden" name="categoryId" id="categoryId" value="${category.categoryId }">
+                <c:if test="${category == null}">
+                  	<form action="create_category" method="post" onsubmit="return validateFormInput()" id="categoryForm">
+                  </c:if>
+                  <c:if test="${category != null}">
+                  	<form action="update_category" method="post" onsubmit="return validateFormInput()" id="categoryForm">
+                  	<input type="hidden" name="categoryId" value="${category.categoryId}">
+                  </c:if>
+                  
                   	<div class="input-group input-group-outline mb-3">  
                       <input type="text" id="name" name="name" value="${category.name }" class="form-control" placeholder="Name">
                     </div>

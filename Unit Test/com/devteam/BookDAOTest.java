@@ -28,7 +28,7 @@ public class BookDAOTest extends BaseDAOTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		BaseDAOTest.setUpBeforeClass();
-		bookDAO = new BookDAO(entityManager);
+		bookDAO = new BookDAO();
 	}
 
 	@AfterClass
@@ -126,14 +126,14 @@ public class BookDAOTest extends BaseDAOTest {
 	@Test
 	public void testFindByTitleNotExits() {
 		String title = "Java";
-		Book book = bookDAO.finfByTitle(title);
+		Book book = bookDAO.findByTitle(title);
 		assertNull(book);
 	}
 	
 	@Test
 	public void testFindByTitleExits() {
 		String title = "The Fire Next Time";
-		Book book = bookDAO.finfByTitle(title);
+		Book book = bookDAO.findByTitle(title);
 		
 		System.out.println(book.getTitle());
 		System.out.println(book.getAuthor());
