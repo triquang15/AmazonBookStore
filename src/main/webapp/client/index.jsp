@@ -94,176 +94,44 @@
             </div>
         </div>
         <!-- slider Area End-->
-        <!-- ? New Product Start -->
-        <section class="new-product-area section-padding30">
-            <div class="container">
-                <!-- Section tittle -->
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section-tittle mb-70">
-                            <h2>Best Sellers & More</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="assets/img/gallery/new_product1.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="assets/img/gallery/new_product2.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-pro mb-30 text-center">
-                            <div class="product-img">
-                                <img src="assets/img/gallery/new_product3.png" alt="">
-                            </div>
-                            <div class="product-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--  New Product End -->
 
         <!--? Popular Items Start -->
         <div class="popular-items section-padding30">
             <div class="container">
                 <!-- Section tittle -->
                 <div class="row justify-content-center">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
+                    <div class="col-xl-7 col-lg-10 col-md-12">
                         <div class="section-tittle mb-70 text-center">
-                            <h2>New Releases</h2>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                            <h2>Hot New Releases</h2>
+                            <p>New Releases in Books</p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular1.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular2.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular3.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular4.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular5.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="assets/img/gallery/popular6.png" alt="">
-                                <div class="img-cap">
-                                    <span>Add to cart</span>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                                <h3><a href="product_details.html">Thermo Ball Etip Gloves</a></h3>
-                                <span>$ 45,743</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <div class="row">
+							<c:forEach items="${listNewBooks}" var="book">
+								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+									<div class="single-popular-items mb-50 text-center">
+										<div class="popular-img">
+											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="400px;"/>
+											<div class="img-cap">
+												<span>Add to cart</span>
+											</div>
+										</div>
+										<div class="popular-caption">
+											<h3>
+												<a href="view_book?id=${book.bookId}">${book.title}</a>
+											</h3>
+											<div><i>by ${book.author}</i></div>
+											<span>$ ${book.price }</span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
                 <!-- Button -->
                 <div class="row justify-content-center">
                     <div class="room-btn pt-70">
-                        <a href="catagori.html" class="btn view-btn1">View More Products</a>
+                        <a href="${pageContext.request.contextPath}/" class="btn view-btn1">View More Products</a>
                     </div>
                 </div>
             </div>
@@ -278,7 +146,7 @@
                         <div class="watch-details mb-40">
                             <h2>Most-favored Books</h2>
                             <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <a href="shop.html" class="btn">Show Watches</a>
+                            <a href="${pageContext.request.contextPath}/" class="btn">Show Watches</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-10">
