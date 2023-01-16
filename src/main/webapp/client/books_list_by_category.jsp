@@ -47,21 +47,7 @@
 
 	</header>
 	<main>
-		<!-- Hero Area Start-->
-		<div class="slider-area ">
-			<div class="single-slider slider-height2 d-flex align-items-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="hero-cap text-center">
-								<h2>${category.name}</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Hero Area End-->
+	<h2 class="text-center">Books in ${category.name} - Online Books Store</h2>
 		<!-- Latest Products Start -->
 		<section class="popular-items latest-padding">
 			<div class="container">
@@ -70,12 +56,12 @@
 					<!-- card one -->
 					<div class="tab-pane fade show active" id="nav-home"
 						role="tabpanel" aria-labelledby="nav-home-tab">
-						<div class="row">
+						 <div class="row">
 							<c:forEach items="${listBooks}" var="book">
-								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
 									<div class="single-popular-items mb-50 text-center">
 										<div class="popular-img">
-											<img src="data:image/jpg;base64,${book.base64Image}"  width="180px;" height="480px;"/>
+											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="380px;"/>
 											<div class="img-cap">
 												<span>Add to cart</span>
 											</div>

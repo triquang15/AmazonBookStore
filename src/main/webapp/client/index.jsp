@@ -44,57 +44,7 @@
 
     </header>
     <main>
-        <!--? slider Area Start -->
-        <div class="slider-area ">
-            <div class="slider-active">
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center slide-bg">
-                    <div class="container">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                                <div class="hero__caption">
-                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">The New Yorker Best Books of 2022</h1>
-                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">A visceral and deeply personal memoir by the star of the Amazon Prime series Catastrophe, about love, loss, and fatherhood.</p>
-                                    <!-- Hero-btn -->
-                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
-                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                    <img src="assets/img/hero/slide.png" alt="" class=" heartbeat">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Slider -->
-                <div class="single-slider slider-height d-flex align-items-center slide-bg">
-                    <div class="container">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
-                                <div class="hero__caption">
-                                    <h1 data-animation="fadeInLeft" data-delay=".4s" data-duration="2000ms">A Heart That Works</h1>
-                                    <p data-animation="fadeInLeft" data-delay=".7s" data-duration="2000ms">A visceral and deeply personal memoir by the star of the Amazon Prime series Catastrophe, about love, loss, and fatherhood.</p>
-                                    <!-- Hero-btn -->
-                                    <div class="hero__btn" data-animation="fadeInLeft" data-delay=".8s" data-duration="2000ms">
-                                        <a href="industries.html" class="btn hero-btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
-                                <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                                    <img src="assets/img/hero/slide.png" alt="" class=" heartbeat">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- slider Area End-->
-
+      
         <!--? Popular Items Start -->
         <div class="popular-items section-padding30">
             <div class="container">
@@ -112,7 +62,7 @@
 								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
 									<div class="single-popular-items mb-50 text-center">
 										<div class="popular-img">
-											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="400px;"/>
+											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="380px;"/>
 											<div class="img-cap">
 												<span>Add to cart</span>
 											</div>
