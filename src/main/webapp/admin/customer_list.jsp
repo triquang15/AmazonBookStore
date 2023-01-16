@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manager Users - Amazon Book Store</title>
+<title>Manager Customers - Amazon Book Store</title>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3" href="category_form.jsp">Categories Management</a></h5>   
+                <h5><a class="text-white text-capitalize ps-3">Management Customers</a></h5>   
               </div>
             </div> <br>
             
@@ -40,39 +40,56 @@
                 <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Index</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Full Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">City</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Country</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
-                  <c:forEach var="category" items="${listCategory }" varStatus="status">
+                  <c:forEach var="customer" items="${listCustomer }">
                   <tbody>
                     <tr>
-                     <td>
-                      	<div class="d-flex flex-column justify-content-center">
-                        	<p class="text-xs font-weight-bold mb-0">${status.index + 1}</p>
-                        </div>
-                      </td> 
                       <td>
                       	<div class="d-flex flex-column justify-content-center">
-                        	<p class="text-xs font-weight-bold mb-0">${category.categoryId }</p>
+                        	<p class="text-xs font-weight-bold mb-0">${customer.customerId }</p>
                         </div>
                       </td>    
                       <td>
                       	<div class="d-flex flex-column justify-content-center">
-                        	<p class="text-xs font-weight-bold mb-0">${category.name }</p>
+                        	<p class="text-xs font-weight-bold mb-0">${customer.email }</p>
                         </div>
-                      </td>
-                      <td class="align-middle">
-                       <a href="category_form.jsp" class="text-secondary font-weight-bold text-xs">
-                          <i class="fa fa-plus">&nbsp;Add</i> |
-                        </a>&nbsp;
-                        <a href="edit_category?id=${category.categoryId}" class="text-secondary font-weight-bold text-xs">
+                      </td>  
+                       <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${customer.fullname }</p>
+                        </div>
+                      </td>  
+                       <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${customer.phone }</p>
+                        </div>
+                      </td>  
+                       <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${customer.city }</p>
+                        </div>
+                      </td> 
+						 <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${customer.country }</p>
+                        </div>
+                      </td>  
+                 
+                      
+                      <td class="align-middle">                    
+                        <a href="edit_customer?id=${customer.customerId}" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;Edit</i> |
                         </a>&nbsp;
                         <a href="javascript:void(0);" class="text-secondary font-weight-bold text-xs">
-                          <i class="fa fa-trash-o deleteLink" aria-hidden="true" style="color: red;" id="${category.categoryId}">&nbsp;Delete</i>
+                          <i class="fa fa-trash-o deleteLink" id="${customer.customerId}" aria-hidden="true" style="color: red;">&nbsp;Delete</i>
                         </a>
                       </td>
                     </tr>
@@ -91,13 +108,13 @@
 		$(document).ready(function() {
 			$(".deleteLink").each(function() {
 				$(this).on("click", function() {
-					categoryId = $(this).attr("id");
-					if (confirm('Are you sure you want to delete the category with ID ' +  categoryId + '?')) {
-						window.location = 'delete_category?id=' + categoryId;
+					customerId = $(this).attr("id");
+					if (confirm('Are you sure you want to delete the customer with ID ' +  customerId + '?')) {
+						window.location = 'delete_customer?id=' + customerId;
 					}					
 				});
 			});
-		});	
+		});
 	</script>
 </body>
 
