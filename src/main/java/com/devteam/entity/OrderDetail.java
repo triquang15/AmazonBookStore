@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -17,8 +18,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "order_detail", catalog = "bookstoredb")
-@NamedQuery(name = "OrderDetail.countByBook",
-query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.book.bookId =:bookId")
+@NamedQueries({
+//	@NamedQuery(name = "OrderDetail.bestSelling", 
+//			query = "SELECT od.book FROM OrderDetail od GROUP by od.book.bookId "
+//					+ "ORDER BY SUM(od.quantity) DESC"),
+	@NamedQuery(name = "OrderDetail.countByBook",
+				query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.book.bookId =:bookId")
+	
+})
 public class OrderDetail implements java.io.Serializable {
 
 	/**

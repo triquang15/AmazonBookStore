@@ -29,7 +29,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3">Management Customers</a></h5>   
+                <h5><a class="text-white text-capitalize ps-3" href="customer_form.jsp">Management Customers</a></h5>   
               </div>
             </div> <br>
             
@@ -84,7 +84,10 @@
                       </td>  
                  
                       
-                      <td class="align-middle">                    
+                      <td class="align-middle">    
+                       <a href="customer_form.jsp" class="text-secondary font-weight-bold text-xs">
+                          <i class="fa fa-plus">&nbsp;Add</i> |
+                        </a>&nbsp;                
                         <a href="edit_customer?id=${customer.customerId}" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp;Edit</i> |
                         </a>&nbsp;

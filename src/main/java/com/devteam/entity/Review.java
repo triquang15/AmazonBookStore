@@ -2,6 +2,8 @@ package com.devteam.entity;
 // Generated Dec 9, 2022, 3:43:23 PM by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,8 +21,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "bookstoredb")
+@NamedQueries({
+	@NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+	@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r) FROM Review r"),
+	@NamedQuery(name = "Review.findByCustomerAndBook", 
+		query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId"
+				+ " AND r.book.bookId =:bookId"),
+	@NamedQuery(name = "Review.mostFavoredBooks",
+		query = "SELECT r.book, COUNT(r.book.bookId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r "
+				+ "GROUP BY r.book.bookId HAVING AVG(r.rating) >= 4.0 "
+				+ "ORDER BY ReviewCount DESC, AvgRating DESC"),
+	@NamedQuery(name = "Review.countByCustomer",
+				query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId")
+})
 public class Review implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer reviewId;
 	private Book book;
 	private Customer customer;

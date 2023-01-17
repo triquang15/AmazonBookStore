@@ -31,7 +31,7 @@
             <div class="preloader-inner position-relative">
                <div class="preloader-circle"></div>
                <div class="preloader-img pere-text">
-                  <img src="assets/img/logo/logo.png" alt="">
+                 <img src="assets/img/logo/logo1.png" alt="">
                </div>
             </div>
       </div>
@@ -83,7 +83,7 @@
                   </div>
                   <div class="blog-author">
                      <div class="media align-items-center">
-                        <img src="assets/img/blog/author.png" alt="">
+                     
                         <div class="media-body">
                            <a href="#">
                               <h4>Harvard milan</h4>
@@ -98,9 +98,7 @@
                      <div class="comment-list">
                         <div class="single-comment justify-content-between d-flex">
                            <div class="user justify-content-between d-flex">
-                              <div class="thumb">
-                                 <img src="assets/img/comment/comment_1.png" alt="">
-                              </div>
+                             
                               <div class="desc">
                                  <p class="comment">
                                     Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
@@ -203,7 +201,6 @@
       <script src="./assets/js/owl.carousel.min.js"></script>
       <script src="./assets/js/slick.min.js"></script>
       <!-- Date Picker -->
-      <script src="./assets/js/gijgo.min.js"></script>
 		<!-- One Page, Animated-HeadLin -->
       <script src="./assets/js/wow.min.js"></script>
 		<script src="./assets/js/animated.headline.js"></script>
@@ -215,7 +212,6 @@
 		<script src="./assets/js/jquery.sticky.js"></script>
         
       <!-- contact js -->
-      <script src="./assets/js/contact.js"></script>
       <script src="./assets/js/jquery.form.js"></script>
       <script src="./assets/js/jquery.validate.min.js"></script>
       <script src="./assets/js/mail-script.js"></script>

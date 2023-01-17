@@ -36,6 +36,10 @@ import javax.persistence.NamedQuery;
 })
 public class BookOrder implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer orderId;
 	private Customer customer;
 	private Date orderDate;
