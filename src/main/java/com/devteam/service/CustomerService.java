@@ -153,6 +153,26 @@ public class CustomerService {
 		}
 		
 	}
+
+ 	public void registerCustomer() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		Customer existCustomer = customerDAO.findByEmail(email);
+		String message = "";
+		
+		if (existCustomer != null) {
+			message = "The email "
+					+ email + " is already.";
+		} else {
+			
+			Customer newCustomer = new Customer();
+			updateCustomerFieldsFromForm(newCustomer);			
+			customerDAO.create(newCustomer);
+			
+			message = "You have registered successfully!";			
+		}
+		
+		showMessageFrontend(message, request, response);
+	}
 	
 	
 }

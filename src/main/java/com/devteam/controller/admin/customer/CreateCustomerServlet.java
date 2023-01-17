@@ -1,4 +1,4 @@
-package com.devteam.controller.customer;
+package com.devteam.controller.admin.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.devteam.service.CustomerService;
 
 /**
- * Servlet implementation class ListCustomerServlet
+ * Servlet implementation class CreateCustomerServlet
  */
-@WebServlet("/admin/list_customer")
-public class ListCustomerServlet extends HttpServlet {
+@WebServlet("/admin/create_customer")
+public class CreateCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListCustomerServlet() {
+    public CreateCustomerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CustomerService customerServices = new CustomerService(request, response);
-		customerServices.listCustomers();
+		customerServices.createCustomer();
 	}
 
 }

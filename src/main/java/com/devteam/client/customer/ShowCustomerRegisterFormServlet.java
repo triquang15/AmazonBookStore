@@ -1,25 +1,25 @@
-package com.devteam.controller.customer;
+package com.devteam.client.customer;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.devteam.service.CustomerService;
-
 /**
- * Servlet implementation class DeleteCustomerServlet
+ * Servlet implementation class ShowCustomerRegisterFormServlet
  */
-@WebServlet("/admin/delete_customer")
-public class DeleteCustomerServlet extends HttpServlet {
+@WebServlet("/register")
+public class ShowCustomerRegisterFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteCustomerServlet() {
+    public ShowCustomerRegisterFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +28,9 @@ public class DeleteCustomerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CustomerService customerServices = new CustomerService(request, response);
-		customerServices.deleteCustomer();
+		String registerForm = "client/register_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
+		dispatcher.forward(request, response);
 	}
-
 
 }

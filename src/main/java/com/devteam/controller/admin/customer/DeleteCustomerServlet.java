@@ -1,4 +1,4 @@
-package com.devteam.controller.customer;
+package com.devteam.controller.admin.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.devteam.service.CustomerService;
 
 /**
- * Servlet implementation class EditCustomerServlet
+ * Servlet implementation class DeleteCustomerServlet
  */
-@WebServlet("/admin/edit_customer")
-public class EditCustomerServlet extends HttpServlet {
+@WebServlet("/admin/delete_customer")
+public class DeleteCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditCustomerServlet() {
+    public DeleteCustomerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,8 @@ public class EditCustomerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CustomerService customerServices = new CustomerService(request, response);
-		customerServices.editCustomer();
+		customerServices.deleteCustomer();
 	}
+
 
 }
