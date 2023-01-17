@@ -46,54 +46,7 @@
     </header>
     <main>
        
-        <!--================login_part Area =================-->
-        <section class="login_part section_padding ">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="login_part_text text-center">
-                            <div class="login_part_text_iner">
-                                <h2>Creating Your Account</h2>
-                                <p>Help with your account | Subscriptions | Unsubscribe | Terms of Use and Privacy | Cookie Preferences</p>
-                                <a href="register" class="btn_3">Sign Up</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="login_part_form">
-                            <div class="login_part_form_iner">
-                                <h3>Welcome Back ! <br>
-                                    Please Sign In now</h3>
-                                    <c:if test="${message != null}">
-                                    <p class="text-center" style="color: red;">${message}</p>
-                                    </c:if>
-		
-                                <form class="row contact_form" id="loginForm" action="login" method="post">
-                                    <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="email" name="email" size="45"
-                                            placeholder="Email">
-                                    </div>
-                                   
-                                    <div class="col-md-12 form-group p_star">
-                                        <input type="password" class="form-control" id="password" name="password" size="15" 
-                                            placeholder="Password">
-                                    </div>
-                                                                      
-                                    
-                                    <div class="col-md-12 form-group">                                      
-                                        <button type="submit" value="submit" class="btn_3">
-                                            Sign In
-                                        </button>
-                                       
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================login_part end =================-->
+      <h3 class="text-center" style="color: red;">${message }</h3>
     </main>
     <footer>
         <!-- Footer Start-->
@@ -112,31 +65,8 @@
     <!-- Search model end -->
     
     <!-- JS here -->
-  <script type="text/javascript">
+  
 
-	$(document).ready(function() {
-		$("#loginForm").validate({
-			rules: {
-				email: {
-					required: true,
-					email: true
-				},
-		
-				password: "required",
-			},
-			
-			messages: {
-				email: {
-					required: "Please enter email",
-					email: "Please enter an valid email address"
-				},
-				
-				password: "Please enter password"
-			}
-		});
-
-	});
-</script>
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     

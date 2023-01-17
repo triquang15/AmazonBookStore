@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Book Store | eCommers</title>
+    <title>Results for ${keyword} - Online Books Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -51,14 +53,19 @@
                 <!-- Section tittle -->
                 <div class="row justify-content-center">
                     <div class="col-xl-7 col-lg-10 col-md-12">
+                    <c:if test="${fn:length(result) == 0}">
                         <div class="section-tittle mb-70 text-center">
-                            <h2>Hot New Releases</h2>
-                            <p>New Releases in Books</p>
+                           <h2>No Results for "${keyword}"</h2>
                         </div>
+                        </c:if>
                     </div>
                 </div>
+                
+                <c:if test="${fn:length(result) > 0}">
+                               <center><h2>Results for "${keyword}":</h2></center>
                <div class="row">
-							<c:forEach items="${listNewBooks}" var="book">
+
+							<c:forEach items="${result}" var="book">
 								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
 									<div class="single-popular-items mb-50 text-center">
 										<div class="popular-img">
@@ -84,31 +91,11 @@
                         <a href="${pageContext.request.contextPath}/" class="btn view-btn1">View More Products</a>
                     </div>
                 </div>
+                </c:if>
             </div>
         </div>
         <!-- Popular Items End -->
       
-        <!--? Watch Choice  Start-->
-        <div class="watch-area section-padding30">
-            <div class="container">
-                <div class="row align-items-center justify-content-between padding-130">
-                    <div class="col-lg-5 col-md-6">
-                        <div class="watch-details mb-40">
-                            <h2>Most-favored Books</h2>
-                            <p>Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                            <a href="${pageContext.request.contextPath}/" class="btn">Show Watches</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-10">
-                        <div class="choice-watch-img mb-40">
-                            <img src="assets/img/gallery/choce_watch1.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <!-- Watch Choice  End-->
         <!--? Shop Method Start-->
         <div class="shop-method-area">
             <div class="container">

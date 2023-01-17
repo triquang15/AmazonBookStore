@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Book Store | eCommers</title>
+    <title>Amazon Book Store | Customer Profile</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -53,36 +54,61 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_text text-center">
                             <div class="login_part_text_iner">
-                                <h2>Creating Your Account</h2>
+                                <h2>Do you already have an account ?</h2>
                                 <p>Help with your account | Subscriptions | Unsubscribe | Terms of Use and Privacy | Cookie Preferences</p>
-                                <a href="register" class="btn_3">Sign Up</a>
+                                <button id="buttonCancel" class="btn_3">Back</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
-                                <h3>Welcome Back ! <br>
-                                    Please Sign In now</h3>
-                                    <c:if test="${message != null}">
-                                    <p class="text-center" style="color: red;">${message}</p>
-                                    </c:if>
-		
-                                <form class="row contact_form" id="loginForm" action="login" method="post">
-                                    <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="email" name="email" size="45"
-                                            placeholder="Email">
+                                <h3>Profile & settings</h3>
+  
+                                    <h3>${message}</h3>
+                                <form class="row contact_form" action="update_profile" method="post" id="customerForm">
+                                    <div class="col-md-12 form-group p_star ">
+                                    <label style="color: red;">Email(*)</label>
+                                        <input type="text" class="form-control" placeholder="${loggedCustomer.email}" readonly="readonly">
                                     </div>
-                                   
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="fullName" name="fullName" size="45"
+                                            placeholder="Full Name(*)" value="${loggedCustomer.fullname}">
+                                    </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" size="15" 
                                             placeholder="Password">
                                     </div>
-                                                                      
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" size="15" 
+                                            placeholder="Confirm Password">
+                                    </div>
+                                     <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="phone" name="phone" size="15"
+                                            placeholder="Phone(*)" value="${loggedCustomer.phone}">
+                                    </div>
+                                    
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="address" name="address" size="45"
+                                            placeholder="Address(*)" value="${loggedCustomer.address}">
+                                    </div>
+                                    
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="city" name="city" size="45"
+                                            placeholder="City(*)" value="${loggedCustomer.city}">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="zipCode" name="zipCode" size="45"
+                                            placeholder="Zip Code(*)" value="${loggedCustomer.zipcode}">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="country" name="country" size="45"
+                                            placeholder="Country(*)" value="${loggedCustomer.country}">
+                                    </div>
                                     
                                     <div class="col-md-12 form-group">                                      
                                         <button type="submit" value="submit" class="btn_3">
-                                            Sign In
+                                            Update an Account
                                         </button>
                                        
                                     </div>
@@ -112,31 +138,54 @@
     <!-- Search model end -->
     
     <!-- JS here -->
-  <script type="text/javascript">
+   <script type="text/javascript">
 
 	$(document).ready(function() {
-		$("#loginForm").validate({
+		$("#customerForm").validate({
 			rules: {
 				email: {
 					required: true,
 					email: true
 				},
-		
-				password: "required",
+				fullName: "required",
+				
+				confirmPassword: {
+					equalTo: "#password"
+				},
+				
+				phone: "required",								
+				address: "required",
+				city: "required",
+				zipCode: "required",
+				country: "required",
 			},
 			
 			messages: {
 				email: {
-					required: "Please enter email",
-					email: "Please enter an valid email address"
+					required: "Please enter e-mail address",
+					email: "Please enter a valid e-mail address"
 				},
 				
-				password: "Please enter password"
+				fullName: "Please enter full name",
+				
+				confirmPassword: {
+					equalTo: "Confirm password does not match password"
+				},
+				
+				phone: "Please enter phone number",								
+				address: "Please enter address",
+				city: "Please enter city",
+				zipCode: "Please enter zip code",
+				country: "Please enter country",
 			}
 		});
-
-	});
+		
+		$("#buttonCancel").click(function() {
+			history.go(-1);
+		});
+	});	
 </script>
+
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->
     

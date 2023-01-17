@@ -38,4 +38,3 @@ public class HashGenerator {
     }
 }
 
-// https://stackoverflow.com/questions/10303767/encrypt-and-decrypt-in-java

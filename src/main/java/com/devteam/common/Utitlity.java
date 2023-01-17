@@ -15,7 +15,7 @@ public class Utitlity {
 
 	public static void showMessageFrontend(String message, HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		forwardToPage("frontend/message.jsp", message, request, response);
+		forwardToPage("client/message.jsp", message, request, response);
 	}
 
 	public static void showMessageBackend(String message, HttpServletRequest request, HttpServletResponse response)
