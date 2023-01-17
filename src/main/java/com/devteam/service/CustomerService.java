@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.devteam.dao.CustomerDAO;
 import com.devteam.dao.OrderDAO;
@@ -172,6 +173,51 @@ public class CustomerService {
 		}
 		
 		showMessageFrontend(message, request, response);
+	}
+
+	public void showLogin() throws ServletException, IOException {
+		forwardToPage("client/login.jsp", request, response);
+	}
+
+	public void doLogin() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		
+		if (customer == null) {
+			String message = "Incorrect account or password.";
+			request.setAttribute("message", message);
+			showLogin();
+			
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("loggedCustomer", customer);
+			
+			Object objRedirectURL = session.getAttribute("redirectURL");
+			
+			if (objRedirectURL != null) {
+				String redirectURL = (String) objRedirectURL;
+				session.removeAttribute("redirectURL");
+				response.sendRedirect(redirectURL);
+			} else {
+				showCustomerProfile();
+			}
+		}
+	}
+
+	public void showCustomerProfile() throws ServletException, IOException {
+		forwardToPage("client/customer_profile.jsp", request, response);
+	}
+
+
+	public void updateCustomerProfile() throws ServletException, IOException {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		updateCustomerFieldsFromForm(customer);
+		customerDAO.update(customer);
+		
+		showCustomerProfile();
+		
 	}
 	
 	

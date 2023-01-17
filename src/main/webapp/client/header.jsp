@@ -20,9 +20,17 @@
                                            </c:forEach>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Blog</a>                                      
-                                    </li>                                  
-                                    <li><a href="#">Contact</a></li>
+                                     <li><a href="#">Contact</a></li>
+                                     <c:if test="${loggedCustomer != null}">
+                                     <li><a class="flaticon-user" href="#">&nbsp;Account</a>
+                                        <ul class="submenu">
+                                            <li><a href="view_profile" style="color: red;">${loggedCustomer.fullname}</a></li>
+                                            <li><a href="view_orders">My Orders</a></li>
+                                            <li><a href="logout">Logout</a></li>
+                                        </ul>                                   
+                                    </li>    
+                                     </c:if>                              
+                                   
                                 </ul>
                             </nav>
                         </div>
@@ -34,8 +42,11 @@
                                         <span class="flaticon-search"></span>
                                     </div>
                                 </li>
-                                <li> <a href="register"><span class="flaticon-user"></span></a></li>
-                                <li><a href="#"><span class="flaticon-shopping-cart"></span></a> </li>
+                                
+                                <c:if test="${loggedCustomer == null}">
+                               		 <li> <a href="login"><span class="flaticon-user"></span></a></li>
+                                </c:if>                             
+                               <li><a href="#"><span class="flaticon-shopping-cart"></span></a></li>
                             </ul>
                         </div>
                     </div>

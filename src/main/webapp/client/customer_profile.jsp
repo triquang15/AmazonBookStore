@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Book Store | eCommers</title>
+    <title>Amazon Book Store | Customer Profile</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -55,24 +56,24 @@
                             <div class="login_part_text_iner">
                                 <h2>Do you already have an account ?</h2>
                                 <p>Help with your account | Subscriptions | Unsubscribe | Terms of Use and Privacy | Cookie Preferences</p>
-                                <a href="login" class="btn_3">Sign In</a>
+                                <button id="buttonCancel" class="btn_3">Back</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
-                                <h3>Welcome Back ! <br>
-                                    Please Sign up now</h3>
+                                <h3>Profile & settings</h3>
+  
                                     <h3>${message}</h3>
-                                <form class="row contact_form" action="register_customer" method="post" id="customerForm">
-                                    <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="email" name="email" size="45"
-                                            placeholder="Email">
+                                <form class="row contact_form" action="update_profile" method="post" id="customerForm">
+                                    <div class="col-md-12 form-group p_star ">
+                                    <label style="color: red;">Email(*)</label>
+                                        <input type="text" class="form-control" placeholder="${loggedCustomer.email}" readonly="readonly">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="fullName" name="fullName" size="45"
-                                            placeholder="Full Name">
+                                            placeholder="Full Name(*)" value="${loggedCustomer.fullname}">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" size="15" 
@@ -84,30 +85,30 @@
                                     </div>
                                      <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="phone" name="phone" size="15"
-                                            placeholder="Phone">
+                                            placeholder="Phone(*)" value="${loggedCustomer.phone}">
                                     </div>
                                     
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="address" name="address" size="45"
-                                            placeholder="Address">
+                                            placeholder="Address(*)" value="${loggedCustomer.address}">
                                     </div>
                                     
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="city" name="city" size="45"
-                                            placeholder="City">
+                                            placeholder="City(*)" value="${loggedCustomer.city}">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="zipCode" name="zipCode" size="45"
-                                            placeholder="Zip Code">
+                                            placeholder="Zip Code(*)" value="${loggedCustomer.zipcode}">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="country" name="country" size="45"
-                                            placeholder="Country">
+                                            placeholder="Country(*)" value="${loggedCustomer.country}">
                                     </div>
                                     
                                     <div class="col-md-12 form-group">                                      
                                         <button type="submit" value="submit" class="btn_3">
-                                            Create an Account
+                                            Update an Account
                                         </button>
                                        
                                     </div>
@@ -137,7 +138,7 @@
     <!-- Search model end -->
     
     <!-- JS here -->
-    <script type="text/javascript">
+   <script type="text/javascript">
 
 	$(document).ready(function() {
 		$("#customerForm").validate({
@@ -147,10 +148,8 @@
 					email: true
 				},
 				fullName: "required",
-				password: "required",
 				
 				confirmPassword: {
-					required: true,
 					equalTo: "#password"
 				},
 				
@@ -168,10 +167,8 @@
 				},
 				
 				fullName: "Please enter full name",
-				password: "Please enter password",
 				
 				confirmPassword: {
-					required: "Please confirm password",
 					equalTo: "Confirm password does not match password"
 				},
 				
