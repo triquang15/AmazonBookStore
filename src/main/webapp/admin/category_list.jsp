@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manager Users - Amazon Book Store</title>
+<title>Manager Categories - Amazon Book Store</title>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -28,8 +28,8 @@
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3" href="category_form.jsp">Categories Management</a></h5>   
+              <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3 text-center">
+                <h5><a class="text-white text-capitalize ps-3" href="category_form.jsp">Add New Category</a></h5>   
               </div>
             </div> <br>
             

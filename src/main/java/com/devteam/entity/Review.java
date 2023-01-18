@@ -72,7 +72,7 @@ public class Review implements java.io.Serializable {
 		this.reviewId = reviewId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "book_id", nullable = false)
 	public Book getBook() {
 		return this.book;
@@ -82,7 +82,7 @@ public class Review implements java.io.Serializable {
 		this.book = book;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id", nullable = false)
 	public Customer getCustomer() {
 		return this.customer;
