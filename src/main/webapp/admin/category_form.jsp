@@ -53,8 +53,8 @@
                     </div>
                    
                     <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary">Submit</button> &nbsp;&nbsp;&nbsp;
-                      <button type="button" class="btn btn-lg bg-gradient-primary " onclick="javascript:history.go(-1);">Cancel</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-warning">Submit</button> &nbsp;&nbsp;&nbsp;
+                      <button type="button" class="btn btn-lg bg-gradient-warning " onclick="javascript:history.go(-1);">Cancel</button>
                     </div>
                   </form>
                 </div>      

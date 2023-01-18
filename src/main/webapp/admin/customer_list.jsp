@@ -28,8 +28,8 @@
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3" href="customer_form.jsp">Management Customers</a></h5>   
+              <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3 text-center">
+                <h5><a class="text-white text-capitalize ps-3" href="customer_form.jsp">Add New Customer</a></h5>   
               </div>
             </div> <br>
             

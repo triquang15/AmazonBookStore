@@ -48,15 +48,15 @@ public class UserServices {
 
 	public void createUser() throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("fullname");
+		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
 
 		Users existUser = userDAO.findByEmail(email);
 
 		if (existUser != null) {
-			String message = "User with email " + email + " already exists";
+			String message = "Email " + email + " already exists";
 			request.setAttribute("message", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("user_form.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("sign_up.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			Users newUser = new Users(email, fullName, password);
@@ -70,7 +70,7 @@ public class UserServices {
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
 
-		String destPage = "user_form.jsp";
+		String destPage = "sign_up.jsp";
 
 		if (user == null) {
 			destPage = "message.jsp";
@@ -87,7 +87,7 @@ public class UserServices {
 	public void updateUser() throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("fullname");
+		String fullName = request.getParameter("fullName");
 		String password = request.getParameter("password");
 
 		Users userById = userDAO.get(userId);
@@ -95,9 +95,9 @@ public class UserServices {
 		Users userByEmail = userDAO.findByEmail(email);
 
 		if (userByEmail != null && userByEmail.getUserId() != userById.getUserId()) {
-			String message = "User with email " + email + "already exists.";
+			String message = "Email " + email + "already exists.";
 			request.setAttribute("message", message);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_form.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("sign_up.jsp");
 			requestDispatcher.forward(request, response);
 
 		} else {
@@ -125,7 +125,7 @@ public class UserServices {
 					+ ", or it might have been deleted by another admin";
 			
 			request.setAttribute("message", message);
-			request.getRequestDispatcher("user_form.jsp").forward(request, response);			
+			request.getRequestDispatcher("sign_up.jsp").forward(request, response);			
 		} else {
 			userDAO.delete(userId);
 			listUser(message);

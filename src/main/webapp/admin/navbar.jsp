@@ -14,34 +14,14 @@
               <input type="text" class="form-control">
             </div>
           </div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-             <c:if test="${useremail != null }">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Hi, <c:out value="${sessionScope.useremail }"></c:out></a>
-            </li>
-            </c:if> 
-     
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                </div>
-              </a>
-            </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li>
-            
+         
+               <c:if test="${useremail != null }">
              <li class="nav-item d-flex align-items-center">
-              <a href="logout" class="nav-link text-body font-weight-bold px-0">
-                <span class="d-sm-inline d-none">Sign out</span>
+              <a href="#" class="nav-link text-body font-weight-bold px-0">
+                <span class="d-sm-inline d-none">Hi,&nbsp;<b style="color: red;"><c:out value="${sessionScope.useremail }"></c:out></b></span>
               </a>
             </li>
-        
+        </c:if>
    
         </div>
       </div>

@@ -28,8 +28,8 @@
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h5><a class="text-white text-capitalize ps-3" href="user_form.jsp">Users Management</a></h5>   
+              <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3 text-center">
+                <h5><a class="text-white text-capitalize ps-3" href="sign_up.jsp">Add new user</a></h5>   
               </div>
             </div> <br>
             
@@ -66,7 +66,7 @@
                       </td>
                       
                       <td class="align-middle">
-                       <a href="user_form.jsp" class="text-secondary font-weight-bold text-xs">
+                       <a href="sign_up.jsp" class="text-secondary font-weight-bold text-xs">
                           <i class="fa fa-plus">&nbsp;Add</i> |
                         </a>&nbsp;
                         <a href="edit_user?id=${user.userId}" class="text-secondary font-weight-bold text-xs">
