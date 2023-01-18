@@ -50,27 +50,24 @@
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-12 col-md-6 my-auto">
               <div class="copyright text-center text-sm text-white text-lg-start">
-                © <script>
+               © 1996-<script>
                   document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold text-white" target="_blank">Amazon Book Store</a>
-                for a better web.
+                </script>, Amazon Book Store, Inc. or its affiliates
               </div>
             </div>
             <div class="col-12 col-md-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
-                  <a href="index.jsp" class="nav-link text-white">Amazon Book Store</a>
+                  <a href="#" class="nav-link text-white" target="_blank">Terms of Service</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" target="_blank">About Us</a>
+                  <a href="#" class="nav-link text-white" target="_blank">Privacy</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" target="_blank">Blog</a>
+                  <a href="#" class="nav-link text-white" target="_blank">Cookies</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link pe-0 text-white" target="_blank">License</a>
+                  <a href="#" class="nav-link pe-0 text-white" target="_blank">Conditions of Use </a>
                 </li>
               </ul>
             </div>
