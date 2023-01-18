@@ -132,7 +132,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,6 +141,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (2,'Obama@gmail.com','Brack Obama','LonDon','California','USA','098678123','124354','12345678','2023-01-16'),(3,'Ronaldo@gmail.com','Cris Ronadol','LonDon','California','USA','098678123','124354','12345678','2023-01-16'),(5,'quangtri.nguyen@dxc.com','Tri Quang','Ho Chi Minh - Viet Nam','Ho Chi Minh ','Viet Nam','0987645761','324325','123456789','2023-01-17'),(6,'sabra@uyetake.org','quangtri.nguyen','Ho Chi Minh - Viet Nam','Ho Chi Minh ','Viet Nam','0987645761','4365436','12345678','2023-01-17');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +194,7 @@ CREATE TABLE `review` (
   KEY `customer_fk_idx` (`customer_id`),
   CONSTRAINT `book_fk` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
   CONSTRAINT `customer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,6 +203,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (1,2,3,5,'So excited to read','In IT STARTS WITH US, though Ryle is no longer Lily’s husband, his manipulating, threatening and angry outbursts are all but gone.','2023-01-18 09:08:15'),(6,2,5,4,'Not just another romance','I hadn’t decided, for sure, I wanted to read the sequel to IT ENDS WITH US. But when the audio recording became available at the library, I decided to give it a chance.','2023-01-16 09:08:15'),(7,3,2,2,'Decent, but not as good as the original','Lily and Ryle are divorced now, trying to make co-parenting work, without putting their daughter, Emerson, at risk of Ryle’s temper. Ryle has been pretty agreeable to Lily’s demands so far, but he is hopeful the two of them will eventually get back together.','2023-01-16 09:08:15'),(8,4,3,3,'Colleen does it again!! (Not that I or anyone else is surprised)','As I read this book, I thought if only I had an Atlas to show me how a man should treat a woman, maybe I would have not put up with the abuse for so long. Luckily, I found my Atlas, but AFTER my divorce. I at least know I will never put up with that kind of abuse ever again.','2023-01-16 09:08:15'),(9,5,6,4,' Atlas is the star','I liked this book, but it didn’t have the punch of It Ends with Us. I think it is clear that Hoover\'s storytelling, more than her writing reels you in. An interesting plot, and multi-layered characters are part of Hoover\'s strength.','2023-01-16 09:08:15'),(10,6,5,5,'Romantic ?','It Starts with Us is a very simplified version of real life. I don\'t believe things come easy in complicated relationships. Some of the more dynamic plots ended too quickly, in a less real world format.','2023-01-16 09:08:15'),(11,7,2,1,'Romantic ?','If Hoover would have dug a little deeper, showing the reader how dynamic single motherhood, the relationships we keep post divorce, and the struggle, it would have been more realistic.','2023-01-16 09:08:15'),(12,8,3,2,'Romantic ?','Overall, I loved Atlas, some of the new characters, and Lily\'s growth. This was a well done ending to a beloved story. I hope we get a show/movie soon!','2023-01-16 09:08:15'),(13,9,5,3,'Romantic ?','It Starts with Us was a beautifully written and heartwarming sequel to It Ends with Us. This was one of my most anticipated reads and it did not disappoint. Atlas and Lily deserved their happy ending and getting to read that was absolutely everything I wanted and more.','2023-01-16 09:08:15'),(14,10,6,4,'Romantic ?','Again this book picks up immediately after the ending of It Ends with Us, so I would highly recommend just reading that book first. I also suggest checking the content and trigger warnings before reading.','2023-01-16 09:08:15'),(15,11,6,5,'Romantic ?','It is dual POVs of Atlas and Lily and has a second chance romance and the found family trope.','2023-01-16 09:08:15'),(16,12,5,5,'Romantic ?','The premise of this book was definitely a lot lighter than the first book, as it focused more on accepting and fighting for love and family. The writing was amazing and just easy to read; I also loved the short chapters.','2023-01-16 09:08:15'),(17,13,3,4,'Romantic ?','The discussions regarding abuse, finding support and being a survivor was so powerful as well. While, there were some difficult and heartbreaking moments throughout the story, those moments were beautifully written and carefully handled.','2023-01-16 09:08:15'),(18,14,2,3,'Romantic ?','The romance between Atlas and Lily was incredible. I actually liked how they took their time and didn’t immediately jump into a relationship. All the history, banter, chemistry and spice between them was amazing. They both deserved their happily ever after especially with everything they went through, so being able to read that was so heartwarming.','2023-01-16 09:08:15');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +221,7 @@ CREATE TABLE `users` (
   `password` varchar(64) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +230,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (6,'quangtri.nguyen@dxc.com','Tri Quang','25d55ad283aa400af464c76d713c07ad'),(8,'admin@gmail.com','Mr Admin','25d55ad283aa400af464c76d713c07ad'),(31,'mitsue_tollner@yahoo.com','Mitsue_tollner','550e1bafe077ff0b0b67f4e32f29d751'),(32,'sabra@uyetake.org','Leo Messi','25d55ad283aa400af464c76d713c07ad');
+INSERT INTO `users` VALUES (6,'quangtri.nguyen@dxc.com','Tri Quang','550e1bafe077ff0b0b67f4e32f29d751'),(8,'admin@gmail.com','Mr Admin','25d55ad283aa400af464c76d713c07ad'),(31,'mitsue_tollner@yahoo.com','Mitsue_tollner','579646aad11fae4dd295812fb4526245'),(32,'sabra@uyetake.org','Leo Messi','051709f754422eefab005b919da29380');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-16 10:29:58
+-- Dump completed on 2023-01-18 16:40:15

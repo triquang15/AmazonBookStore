@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>	
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>${book.title}- Online Books Store</title>
+    <title>Amazon Books Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -43,7 +44,7 @@
       <!-- Header End -->
    </header>
       <main>
-  <h2 class="text-center">Books in ${book.title} - Online Books Store</h2>
+  <h2 class="text-center">Books in ${book.title}</h2>
       <!--================Blog Area =================-->
       <section class="blog_area single-post-area section-padding">
          <div class="container">
@@ -55,9 +56,10 @@
                      </div>
                      <div class="blog_details">
                         <h2>${book.title}</h2>
+                        <div><jsp:directive.include file="book_rating.jsp" /></div>
                         <ul class="blog-info-link mt-3 mb-4">
-                           <li><a href="#"><i class="fa fa-user"></i>by ${book.author}</a></li>
-                           <li><a href="#"><i class="fa fa-comments"></i>*****</a></li>
+                           <li><a style="color: blue;" href="#"><i class="fa fa-user"></i>by ${book.author}</a></li>
+                           <li><a style="color: red;" href="#"><i class="fa fa-comments"></i>${fn:length(book.reviews)} reviews</a></li>
                         </ul>
                         <p class="excert">
                            ${book.description}
@@ -65,65 +67,53 @@
                        
                      </div>
                   </div>
-                  <div class="navigation-top">
-                     <div class="d-sm-flex justify-content-between text-center">
-                        <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                           people like this</p>
-                        <div class="col-sm-4 text-center my-2 my-sm-0">
-                           <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
-                        </div>
-                        <ul class="social-icons">
-                           <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                           <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                           <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                        </ul>
-                     </div>
-                    
-                  </div>
-                  <div class="blog-author">
-                     <div class="media align-items-center">
-                     
-                        <div class="media-body">
-                           <a href="#">
-                              <h4>Harvard milan</h4>
-                           </a>
-                           <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                              our dominion twon Second divided from</p>
-                        </div>
-                     </div>
-                  </div>
+                                 
                   <div class="comments-area">
-                     <h4>05 Comments</h4>
+                     <h4>Customer Reviews</h4>
+                     <c:forEach items="${book.reviews}" var="review">
                      <div class="comment-list">
                         <div class="single-comment justify-content-between d-flex">
                            <div class="user justify-content-between d-flex">
                              
+                             
+                             
+                             		<c:forTokens items="${review.stars}" delims="," var="star">
+										<c:if test="${star eq 'on'}">
+											<img src="assets/img/rating_on.png" style="width: 20px; height: 20px;" />
+										</c:if>
+										<c:if test="${star eq 'off'}">
+											<img src="assets/img/rating_off.png" style="width: 20px; height: 20px;" />
+										</c:if>
+									</c:forTokens>
+									
+									&nbsp;&nbsp;&nbsp;
                               <div class="desc">
                                  <p class="comment">
-                                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                    Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                                    - <b>${review.headline}</b>
                                  </p>
                                  <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                        <h5>
-                                          <a href="#">Emilly Blunt</a>
+                                          <a href="#" style="color: red;">by ${review.customer.fullname}</a>
                                        </h5>
-                                       <p class="date">December 4, 2017 at 3:12 pm </p>
+                                       <p class="date">${review.reviewTime}</p>
                                     </div>
-                                    <div class="reply-btn">
-                                       <a href="#" class="btn-reply text-uppercase">reply</a>
-                                    </div>
+                                   
                                  </div>
+                                 <p class="comment">
+                                   <i>${review.comment}</i>
+                                 </p>
                               </div>
+                             
+                              
                            </div>
                         </div>
                      </div>
-                    
+                     </c:forEach>
                     
                   </div>
                   <div class="comment-form">
-                     <h4>Customer Reviews</h4>
+                      <h4>Write a Customer Review</h4>
                      <form class="form-contact comment_form" action="#" id="commentForm">
                         <div class="row">
                            <div class="col-12">
@@ -135,7 +125,7 @@
                           
                         </div>
                         <div class="form-group">
-                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">Write a Customer Review</button>
+                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit</button>
                         </div>
                      </form>
                   </div>

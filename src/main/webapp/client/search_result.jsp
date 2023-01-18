@@ -79,6 +79,7 @@
 												<a href="view_book?id=${book.bookId}">${book.title}</a>
 											</h3>
 											<div><i>by ${book.author}</i></div>
+											<div><jsp:directive.include file="book_rating.jsp" /></div>
 											<span>$ ${book.price }</span>
 										</div>
 									</div>

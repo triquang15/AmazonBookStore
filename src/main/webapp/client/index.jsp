@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Book Store | eCommers</title>
+    <title>Amazon Book Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -73,6 +73,7 @@
 											</h3>
 											<div><i>by ${book.author}</i></div>
 											<span>$ ${book.price }</span>
+											<div><jsp:directive.include file="book_rating.jsp" /></div>
 										</div>
 									</div>
 								</div>

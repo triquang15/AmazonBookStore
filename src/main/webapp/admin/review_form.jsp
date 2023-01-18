@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manager Users - Amazon Book Store</title>
+<title>Amazon Book Store</title>
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -29,29 +29,37 @@
     <section>
       <div class="page-header min-vh-100">
         <div class="container">
+         <br>
           <div class="row">
               <div class="card card-plain">
                 <div class="card-header">
-                <c:if test="${category == null}">
-                  <h4 class="font-weight-bolder">Create New Category</h4>
-                  </c:if>
-                   <c:if test="${category != null}">
-                  <h4 class="font-weight-bolder">Update Category</h4>
-                  </c:if>
+                           
+                  <h4 class="font-weight-bolder">Update Review</h4>               
                 </div>
-                 <br>
+            
                 <p class="text-center" style="color: red;">${message }</p> <br>
                 <div class="card-body">
-                <c:if test="${category == null}">
-                  	<form action="create_category" method="post" onsubmit="return validateFormInput()" id="categoryForm">
-                  </c:if>
-                  <c:if test="${category != null}">
-                  	<form action="update_category" method="post" onsubmit="return validateFormInput()" id="categoryForm">
-                  	<input type="hidden" name="categoryId" value="${category.categoryId}">
-                  </c:if>
-                  
+                <form action="update_review" method="post" id="reviewForm">
+					<input type="hidden" name="reviewId" value="${review.reviewId}">
+                  	<label>Book:</label>
                   	<div class="input-group input-group-outline mb-3">  
-                      <input type="text" id="name" name="name" value="${category.name }" class="form-control" placeholder="Name">
+                      <input type="text" value="${review.book.title}" class="form-control" readonly="readonly"/>
+                    </div>
+                     <label>Rating:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" value="${review.rating}" class="form-control" readonly="readonly"/>
+                    </div>
+                    
+                    <label>Customer:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" value="${review.customer.fullname}" class="form-control" readonly="readonly"/>
+                    </div>
+                    
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" name="headline" value="${review.headline}" class="form-control" placeholder="Headline"/>
+                    </div>
+                     <div class="input-group input-group-outline mb-3">  
+                     <textarea rows="5" cols="70" name="comment" class="form-control">${review.comment}</textarea>
                     </div>
                    
                     <div class="text-center">
@@ -76,14 +84,22 @@
 	</main>
 </body>
 <script type="text/javascript">
-	function validateFormInput(){
-		var fieldName = document.getElementById("name");
-		if(fieldName.value.length == 0){
-			alert("Category name is required! ");
-			fieldName.focus();
-			return false;
+$(document).ready(function() {
+	$("#reviewForm").validate({
+		rules: {	
+			headline: "required",
+			comment: "required"
+		},
+		
+		messages: {
+			headline: "Please enter headline",
+			comment: "Please enter comment",
 		}
-		return true;
-	}
+	});
+	
+	$("#buttonCancel").click(function() {
+		history.go(-1);
+	});	
+});
 </script>
 </html>
