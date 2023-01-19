@@ -1,4 +1,4 @@
-package com.devteam.dao;
+package com.devteam;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.devteam.dao.ReviewDAO;
 import com.devteam.entity.Book;
 import com.devteam.entity.Customer;
 import com.devteam.entity.Review;

@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
+     <script type="text/javascript" src="./assets/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./assets/js/jquery.validate.min.js"></script>
 </head>
 
 <body>
@@ -101,31 +103,16 @@
                      </c:forEach>
                     
                   </div>
-                  <div class="comment-form">
-                      <h4>Write a Customer Review</h4>
-                     <form class="form-contact comment_form" action="#" id="commentForm">
-                        <div class="row">
-                           <div class="col-12">
-                              <div class="form-group">
-                                 <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                    placeholder="Write Comment"></textarea>
-                              </div>
-                           </div>
-                          
-                        </div>
                         <div class="form-group">
-                           <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit</button>
-                        </div>
-                     </form>
-                  </div>
+                           <button type="submit" class="button button-contactForm btn_1 boxed-btn" id="buttonWriteReview">Write a Customer Review</button>
+                        </div>                   
                </div>
                <div class="col-lg-4">
                   <div class="blog_right_sidebar">
                      <aside class="single_sidebar_widget search_widget">
                         <form action="#">
                              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: $${book.price}</h2>
-                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                              type="submit">Add to card</button>
+                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="buttonAddToCart">Add to card</button>
                         </form>
                      </aside>
                     
@@ -153,6 +140,17 @@
     <!-- Search model end -->
   
    <!-- JS here -->
+   <script type="text/javascript">
+		$(document).ready(function() {
+			$("#buttonWriteReview").click(function() {
+				window.location = 'write_review?book_id=' + ${book.bookId};
+			});
+			
+			$("#buttonAddToCart").click(function() {
+				window.location = 'add_to_cart?book_id=' + ${book.bookId};
+			});				
+		});
+	</script>
 	
       <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
