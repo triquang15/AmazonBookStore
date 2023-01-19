@@ -20,7 +20,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="list_users">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">account_circle</i>
             </div>
             <span class="nav-link-text ms-1">Users</span>
           </a>
@@ -29,7 +29,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="list_category">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">list</i>
             </div>
             <span class="nav-link-text ms-1">Categories</span>
           </a>
@@ -38,7 +38,7 @@
         <li class="nav-item">
           <a class="nav-link text-white " href="list_books">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">apps</i>
             </div>
             <span class="nav-link-text ms-1">Books</span>
           </a>
@@ -47,7 +47,7 @@
          <li class="nav-item">
           <a class="nav-link text-white " href="list_customer">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">person</i>
             </div>
             <span class="nav-link-text ms-1">Customers</span>
           </a>
@@ -56,11 +56,21 @@
          <li class="nav-item">
           <a class="nav-link text-white " href="list_review">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
+              <i class="material-icons opacity-10">event</i>
             </div>
             <span class="nav-link-text ms-1">Reviews</span>
           </a>
         </li>
+        
+         <li class="nav-item">
+          <a class="nav-link text-white " href="list_review">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">shopping_bag</i>
+            </div>
+            <span class="nav-link-text ms-1">Orders</span>
+          </a>
+        </li>
+        
       </ul>
     </div>
     
