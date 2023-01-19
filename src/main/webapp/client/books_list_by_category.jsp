@@ -6,11 +6,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Books in ${category.name} - Online Books Store</title>
+<title>Books in ${category.name} - Amazon Books Store</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/x-icon"
-	href="assets/img/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png">
 
 <!-- CSS here -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -27,19 +26,7 @@
 </head>
 
 <body>
-	<!--? Preloader Start -->
-	<div id="preloader-active">
-		<div
-			class="preloader d-flex align-items-center justify-content-center">
-			<div class="preloader-inner position-relative">
-				<div class="preloader-circle"></div>
-				<div class="preloader-img pere-text">
-					<img src="assets/img/logo/logo1.png" alt="">
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Preloader Start -->
+
 	<header>
 		<!-- Header Start -->
 		<jsp:directive.include file="header.jsp" />
@@ -47,7 +34,7 @@
 
 	</header>
 	<main>
-	<h2 class="text-center">Books in ${category.name} - Online Books Store</h2>
+	<h2 class="text-center">Books in ${category.name} - Amazon Books Store</h2>
 		<!-- Latest Products Start -->
 		<section class="popular-items latest-padding">
 			<div class="container">
@@ -89,54 +76,23 @@
 
 		</section>
 		<!-- Latest Products End -->
-		<!--? Shop Method Start-->
-		<div class="shop-method-area">
-			<div class="container">
-				<div class="method-wrapper">
-					<div class="row d-flex justify-content-between">
-						<div class="col-xl-4 col-lg-4 col-md-6">
-							<div class="single-method mb-40">
-								<i class="ti-package"></i>
-								<h6>Free Shipping Method</h6>
-								<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-							</div>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6">
-							<div class="single-method mb-40">
-								<i class="ti-unlock"></i>
-								<h6>Secure Payment System</h6>
-								<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-							</div>
-						</div>
-						<div class="col-xl-4 col-lg-4 col-md-6">
-							<div class="single-method mb-40">
-								<i class="ti-reload"></i>
-								<h6>Secure Payment System</h6>
-								<p>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Shop Method End-->
+	
 	</main>
 	<footer>
 		<!-- Footer Start-->
 		<jsp:directive.include file="footer.jsp" />
 		<!-- Footer End-->
 	</footer>
-	<!--? Search model Begin -->
-	<div class="search-model-box">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-btn">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input"
-					placeholder="Searching key.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+	    <!--? Search model Begin -->
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form" action="search" method="get">
+                <input type="text" id="search-input" placeholder="Search for anything....." name="keyword" size="50" >
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
 
 	<!-- JS here -->
 	<!-- All JS Custom Plugins Link Here here -->

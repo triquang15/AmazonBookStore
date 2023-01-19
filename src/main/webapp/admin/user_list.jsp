@@ -10,8 +10,7 @@
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="../assets/img/icon.png">
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
@@ -42,15 +41,21 @@
                 <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Index</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Full Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
-                  <c:forEach var="user" items="${listUsers }">
+                  <c:forEach var="user" items="${listUsers }" varStatus="status">
                   <tbody>
                     <tr>
+                    <td>
+                      	<div class="d-flex flex-column justify-content-center">
+                        	<p class="text-xs font-weight-bold mb-0">${status.index + 1}</p>
+                        </div>
+                      </td>    
                       <td>
                       	<div class="d-flex flex-column justify-content-center">
                         	<p class="text-xs font-weight-bold mb-0">${user.userId }</p>

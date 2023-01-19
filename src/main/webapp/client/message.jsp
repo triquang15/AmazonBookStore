@@ -5,10 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Online Book Store | eCommers</title>
+    <title>Amazon Books Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -27,17 +27,6 @@
 </head>
 <body>
    
-           <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo1.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
  <header>
         <!-- Header Start -->
 	<jsp:directive.include file="header.jsp" />
@@ -57,8 +46,8 @@
     <div class="search-model-box">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-btn">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Searching key.....">
+            <form class="search-model-form" action="search" method="get">
+                <input type="text" id="search-input" placeholder="Search for anything....." name="keyword" size="50" >
             </form>
         </div>
     </div>

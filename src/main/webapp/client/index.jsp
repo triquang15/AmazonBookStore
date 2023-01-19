@@ -8,8 +8,7 @@
     <title>Amazon Book Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png">
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -25,18 +24,7 @@
 </head>
 
 <body>
-    <!--? Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo1.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
+   
     <header>
         <!-- Header Start -->
 	<jsp:directive.include file="header.jsp" />
@@ -110,37 +98,7 @@
             </div>
         </div>
         <!-- Watch Choice  End-->
-        <!--? Shop Method Start-->
-        <div class="shop-method-area">
-            <div class="container">
-                <div class="method-wrapper">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-package"></i>
-                                <h6>Free Shipping Method</h6>
-                                <p>Sell products on Amazon.</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-unlock"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>Amazon Business Card.</p>
-                            </div>
-                        </div> 
-                        <div class="col-xl-4 col-lg-4 col-md-6">
-                            <div class="single-method mb-40">
-                                <i class="ti-reload"></i>
-                                <h6>Secure Payment System</h6>
-                                <p>Amazon Currency Converter.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Shop Method End-->
+      
     </main>
     
     <!-- Footer Start-->
