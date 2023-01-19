@@ -7,7 +7,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo1.png" style="width: 50%"></a>
+                                    <a href="${pageContext.request.contextPath}/"><img src="assets/img/logo/amazon.png" style="width: 50%"></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">

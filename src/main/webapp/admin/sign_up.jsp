@@ -7,9 +7,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/img/icon.png">
    <script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
   <title>

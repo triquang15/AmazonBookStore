@@ -18,7 +18,7 @@
                <c:if test="${useremail != null }">
              <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
-                <span class="d-sm-inline d-none">Hi,&nbsp;<b style="color: red;"><c:out value="${sessionScope.useremail }"></c:out></b></span>
+                <span class="d-sm-inline d-none">Hi,&nbsp;<b><c:out value="${sessionScope.useremail }"></c:out></b></span>
               </a>
             </li>
         </c:if>

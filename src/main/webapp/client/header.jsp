@@ -1,11 +1,23 @@
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+  <!--? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="assets/img/logo/amazon.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start --> 
         <div class="header-area">
             <div class="main-header header-sticky">
                 <div class="container-fluid">
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="${pageContext.request.contextPath}/"><img src="assets/img/logo/logo1.png" style="width: 40%;"></a>
+                            <a href="${pageContext.request.contextPath}/"><img src="assets/img/logo/amazon.png" style="width: 40%;"></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
