@@ -6,9 +6,14 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import static com.devteam.common.Utitlity.*;
+
+import com.devteam.dao.BookDAO;
 import com.devteam.dao.ReviewDAO;
+import com.devteam.entity.Book;
+import com.devteam.entity.Customer;
 import com.devteam.entity.Review;
 
 public class ReviewService {
@@ -76,6 +81,51 @@ public class ReviewService {
 					+ ", or it might have been deleted by another admin";
 			showMessageBackend(message, request, response);
 		}		
+	}
+
+	public void showReviewForm() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("book_id"));
+		BookDAO bookDao = new BookDAO();
+		Book book = bookDao.get(bookId);
+		
+		HttpSession session = request.getSession(); 
+		session.setAttribute("book", book);
+		
+		Customer customer = (Customer) session.getAttribute("loggedCustomer");
+		
+		Review existReview = reviewDAO.findByCustomerAndBook(customer.getCustomerId(), bookId);
+		
+		String targetPage = "client/review_form.jsp";
+		
+		if (existReview != null) {
+			request.setAttribute("review", existReview);
+			targetPage = "client/review_info.jsp";
+		}
+
+		forwardToPage(targetPage, request, response);	
+	}
+
+	public void submitReview() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+		Integer rating = Integer.parseInt(request.getParameter("rating"));
+		String headline = request.getParameter("headline");
+		String comment = request.getParameter("comment");
+		
+		Review newReview = new Review();
+		newReview.setHeadline(headline);
+		newReview.setComment(comment);
+		newReview.setRating(rating);
+		
+		Book book = new Book();
+		book.setBookId(bookId);
+		newReview.setBook(book);
+		
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		newReview.setCustomer(customer);
+		
+		reviewDAO.create(newReview);
+		
+		forwardToPage("client/review_done.jsp", request, response);		
 	}
 
 }
