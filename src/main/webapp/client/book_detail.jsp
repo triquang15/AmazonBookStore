@@ -112,7 +112,7 @@
                      <aside class="single_sidebar_widget search_widget">
                         <form action="#">
                              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: $${book.price}</h2>
-                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="buttonAddToCart">Add to card</button>
+                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="buttonAddToCart">Add to cart</button>
                         </form>
                      </aside>
                     

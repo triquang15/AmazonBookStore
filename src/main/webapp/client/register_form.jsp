@@ -36,7 +36,7 @@
     <main>
        
         <!--================login_part Area =================-->
-        <section class="login_part section_padding ">
+        <section class="login_part ">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
