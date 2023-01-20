@@ -43,6 +43,7 @@ import javax.persistence.UniqueConstraint;
 			+ " OR b.description LIKE '%' || :keyword || '%'")
 })
 public class Book implements java.io.Serializable {
+	
 	/**
 	 * 
 	 */
