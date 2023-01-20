@@ -58,7 +58,7 @@
                                 <c:if test="${loggedCustomer == null}">
                                		 <li> <a href="login"><span class="flaticon-user"></span></a></li>
                                 </c:if>                             
-                               <li><a href="#"><span class="flaticon-shopping-cart"></span></a></li>
+                               <li><a href="view_cart"><span class="flaticon-shopping-cart"></span></a></li>
                             </ul>
                         </div>
                     </div>
