@@ -98,13 +98,13 @@
                   </c:forEach>
                   <tr class="bottom_button">
                     <td>
-                      <button class="btn_1" type="submit">Update Cart</button>
+                      <button class="btn primary" type="submit">Update Cart</button>
                     </td>
                     <td></td>
                     <td></td>
                     <td>
                       <div class="cupon_text float-right">
-                        <button class="btn_1" id="clearCart">Clear Cart</button>
+                      <input class="btn primary" type="button" id="clearCart" value="Clear Cart"/>
                       </div>
                     </td>
                   </tr>
@@ -121,8 +121,8 @@
                 </tbody>
               </table>
               <div class="checkout_btn_inner float-right">
-                <a class="btn_1" href="${pageContext.request.contextPath}/">Continue Shopping</a>
-                <a class="btn_1 checkout_btn_1" href="checkout">Proceed to checkout</a>
+                <a class="btn primary" href="${pageContext.request.contextPath}/">Continue Shopping</a>
+                <a class="btn primary checkout_btn_1" href="checkout">Proceed to checkout</a>
               </div>
             </div>
           </div>

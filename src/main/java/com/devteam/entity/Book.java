@@ -1,6 +1,7 @@
 package com.devteam.entity;
 // Generated Dec 9, 2022, 3:43:23 PM by Hibernate Tools 4.3.6.Final
 
+import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
@@ -224,13 +225,13 @@ public class Book implements java.io.Serializable {
 	
 	@Transient
 	public String getBase64Image() {
-		this.base64Image = java.util.Base64.getEncoder().encodeToString(this.image);
+		this.base64Image = Base64.getEncoder().encodeToString(this.image);
 		return this.base64Image;
 	}
 	
 	@Transient
-	public void setBase64Image(String base64) {
-		this.base64Image = base64;
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
 	}
 	
 	@Transient
