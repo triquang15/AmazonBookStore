@@ -56,7 +56,7 @@ public class OrderService {
 	}
 
 	public void showCheckoutForm() throws ServletException, IOException {
-		forwardToPage("frontend/checkout.jsp", request, response);
+		forwardToPage("client/checkout.jsp", request, response);
 	}
 
 	public void placeOrder() throws ServletException, IOException {

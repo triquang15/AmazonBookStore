@@ -29,6 +29,7 @@ public class CheckoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OrderService orderService = new OrderService(request, response);
+		orderService.showCheckoutForm();
 	}
 
 }
