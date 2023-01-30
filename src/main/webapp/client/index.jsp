@@ -70,9 +70,63 @@
                 <!-- Button -->
                 <div class="row justify-content-center">
                     <div class="room-btn pt-70">
-                        <a href="${pageContext.request.contextPath}/" class="btn view-btn1">View More Products</a>
+                        <a href="${pageContext.request.contextPath}/" class="btn view-btn1">Best-Selling Books</a>
                     </div>
                 </div>
+                <br>
+                <div class="row">
+							<c:forEach items="${listBestSellingBooks}" var="book">
+								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+									<div class="single-popular-items mb-50 text-center">
+										<div class="popular-img">
+											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="380px;"/>
+											<div class="img-cap">
+												<span>Add to cart</span>
+											</div>
+										</div>
+										<div class="popular-caption">
+											<h3>
+												<a href="view_book?id=${book.bookId}">${book.title}</a>
+											</h3>
+											<div><i>by ${book.author}</i></div>
+											<span>$ ${book.price }</span>
+											<div><jsp:directive.include file="book_rating.jsp" /></div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						
+				 <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a href="${pageContext.request.contextPath}/" class="btn view-btn1">Most-favored Books</a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+							<c:forEach items="${listFavoredBooks}" var="book">
+								<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+									<div class="single-popular-items mb-50 text-center">
+										<div class="popular-img">
+											<img src="data:image/jpg;base64,${book.base64Image}" width="200px;" height="380px;"/>
+											<div class="img-cap">
+												<span>Add to cart</span>
+											</div>
+										</div>
+										<div class="popular-caption">
+											<h3>
+												<a href="view_book?id=${book.bookId}">${book.title}</a>
+											</h3>
+											<div><i>by ${book.author}</i></div>
+											<span>$ ${book.price }</span>
+											<div><jsp:directive.include file="book_rating.jsp" /></div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+                
+                
             </div>
         </div>
         <!-- Popular Items End -->
