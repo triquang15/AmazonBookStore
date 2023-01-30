@@ -107,7 +107,7 @@ public class OrderService {
 
 		shoppingCart.clear();
 
-		String message = "Thank you. Your order has been received.<br>" + "We will deliver your books within a few days.";
+		String message = "Thank you. Your order has been received.";
 		showMessageFrontend(message, request, response);
 	}
 
