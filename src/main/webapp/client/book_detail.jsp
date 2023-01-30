@@ -109,11 +109,9 @@
                </div>
                <div class="col-lg-4">
                   <div class="blog_right_sidebar">
-                     <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
+                     <aside class="single_sidebar_widget search_widget">                   
                              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price: $${book.price}</h2>
-                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="buttonAddToCart">Add to cart</button>
-                        </form>
+                           <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" id="buttonAddToCart">Add to cart</button>                       
                      </aside>
                     
                   </div>

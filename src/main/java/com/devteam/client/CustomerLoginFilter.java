@@ -27,7 +27,7 @@ public class CustomerLoginFilter extends HttpFilter implements Filter {
 	 * 
 	 */
 	private static final String[] loginRequiredURLs = { "/view_profile", "/edit_profile", "/update_profile",
-			"/write_review", "/checkout", "/place_order", "/view_orders", "/show_order_detail" };
+			"/write_review", "/checkout", "/place_order", "/view_orders", "/order_detail" };
 
 	/**
 	 * @see HttpFilter#HttpFilter()
