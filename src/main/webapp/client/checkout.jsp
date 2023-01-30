@@ -81,7 +81,7 @@
                       <input type="text" class="form-control" name="country" value="${loggedCustomer.country}" placeholder="Country" />
                     </div>
                    
-                  </form>
+                  
                 </div>
                 <div class="col-lg-4">
                   <div class="order_box">
@@ -147,6 +147,7 @@
                   </div>
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </section>

@@ -107,7 +107,7 @@ public class OrderService {
 
 		shoppingCart.clear();
 
-		String message = "Thank you. Your order has been received." + "We will deliver your books within a few days.";
+		String message = "Thank you. Your order has been received.<br>" + "We will deliver your books within a few days.";
 		showMessageFrontend(message, request, response);
 	}
 
@@ -117,7 +117,7 @@ public class OrderService {
 		List<BookOrder> listOrders = orderDao.listByCustomer(customer.getCustomerId());
 
 		request.setAttribute("listOrders", listOrders);
-		forwardToPage("frontend/order_list.jsp", request, response);
+		forwardToPage("client/order_list.jsp", request, response);
 	}
 
 	public void showOrderDetailForCustomer() throws ServletException, IOException {
@@ -128,7 +128,7 @@ public class OrderService {
 
 		BookOrder order = orderDao.get(orderId, customer.getCustomerId());
 		request.setAttribute("order", order);
-		forwardToPage("frontend/order_detail.jsp", request, response);
+		forwardToPage("client/order_detail.jsp", request, response);
 	}
 
 	public void showEditOrderForm() throws ServletException, IOException {
