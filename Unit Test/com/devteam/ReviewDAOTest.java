@@ -79,7 +79,7 @@ public class ReviewDAOTest {
 	public void testListAll() {
 		List<Review> listReviews = reviewDAO.listAll();
 		 for(Review review : listReviews) {
-			 System.out.println(review.getHeadline() + "---" + review.getCustomer().getFullname());
+			 System.out.println(review.getHeadline() + "---" + review.getCustomer().getFirstname());
 		 }
 		 
 		 assertTrue(listReviews.size() > 0);

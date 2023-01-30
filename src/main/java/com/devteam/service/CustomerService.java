@@ -71,14 +71,14 @@ public class CustomerService {
 			customer.setEmail(email);
 		}
 
-		customer.setFullname(fullName);
+		customer.setFirstname(fullName);
 
 		if (password != null && !password.equals("")) {
 			customer.setPassword(password);
 		}
 
 		customer.setPhone(phone);
-		customer.setAddress(address);
+		customer.setAddressLine1(address);
 		customer.setCity(city);
 		customer.setZipcode(zipCode);
 		customer.setCountry(country);
