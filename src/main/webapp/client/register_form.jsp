@@ -60,8 +60,12 @@
                                             placeholder="Email">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="fullName" name="fullName" size="45"
-                                            placeholder="Full Name">
+                                        <input type="text" class="form-control" id="firstname" name="firstname" size="45"
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" size="45"
+                                            placeholder="Last Name">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" size="15" 
@@ -77,21 +81,32 @@
                                     </div>
                                     
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="address" name="address" size="45"
-                                            placeholder="Address">
+                                        <input type="text" class="form-control" id="address1" name="address1" size="45"
+                                            placeholder="Address Line 1">
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="address2" name="address2" size="45"
+                                            placeholder="Address Line 2">
                                     </div>
                                     
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="city" name="city" size="45"
                                             placeholder="City">
                                     </div>
+                                     <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="state" name="state" size="45"
+                                            placeholder="State">
+                                    </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="zipCode" name="zipCode" size="45"
                                             placeholder="Zip Code">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="country" name="country" size="45"
-                                            placeholder="Country">
+                                       <select class="form-select" name="country" id="country">
+				                     		<c:forEach items="${mapCountries }" var="country">
+				                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+				                     		</c:forEach>
+				                     	</select>
                                     </div>
                                     
                                     <div class="col-md-12 form-group">                                      
@@ -135,7 +150,8 @@
 					required: true,
 					email: true
 				},
-				fullName: "required",
+				firstname: "required",
+				lastname: "required",
 				password: "required",
 				
 				confirmPassword: {
@@ -144,8 +160,10 @@
 				},
 				
 				phone: "required",								
-				address: "required",
+				address1: "required",
+				address2: "required",
 				city: "required",
+				state: "required",
 				zipCode: "required",
 				country: "required",
 			},
@@ -156,7 +174,8 @@
 					email: "Please enter a valid e-mail address"
 				},
 				
-				fullName: "Please enter full name",
+				firstname: "Please enter first name",
+				lastname: "Please enter last name",
 				password: "Please enter password",
 				
 				confirmPassword: {
@@ -165,8 +184,10 @@
 				},
 				
 				phone: "Please enter phone number",								
-				address: "Please enter address",
+				address1: "Please enter address line 1",
+				address2: "Please enter address line 2",
 				city: "Please enter city",
+				state: "Please enter state",
 				zipCode: "Please enter zip code",
 				country: "Please enter country",
 			}

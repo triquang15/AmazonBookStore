@@ -1,13 +1,18 @@
 package com.devteam.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.devteam.common.HashGenerator;
 import com.devteam.dao.CustomerDAO;
 import com.devteam.dao.OrderDAO;
 import com.devteam.dao.ReviewDAO;
@@ -59,11 +64,14 @@ public class CustomerService {
 
 	private void updateCustomerFieldsFromForm(Customer customer) {
 		String email = request.getParameter("email");
-		String fullName = request.getParameter("fullName");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
-		String address = request.getParameter("address");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
 		String city = request.getParameter("city");
+		String state = request.getParameter("state");
 		String zipCode = request.getParameter("zipCode");
 		String country = request.getParameter("country");
 
@@ -71,15 +79,19 @@ public class CustomerService {
 			customer.setEmail(email);
 		}
 
-		customer.setFullname(fullName);
+		customer.setFirstname(firstname);
+		customer.setLastname(lastname);
 
-		if (password != null && !password.equals("")) {
-			customer.setPassword(password);
+		if (password != null && !password.isEmpty()) {
+			String encryptPassword = HashGenerator.generateMD5(password);
+			customer.setPassword(encryptPassword);
 		}
 
 		customer.setPhone(phone);
-		customer.setAddress(address);
+		customer.setAddressLine1(address1);
+		customer.setAddressLine2(address2);
 		customer.setCity(city);
+		customer.setState(state);
 		customer.setZipcode(zipCode);
 		customer.setCountry(country);
 	}
@@ -87,6 +99,8 @@ public class CustomerService {
 	public void editCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
+		
+		loadCountryList();
 
 		if (customer == null) {
 			String message = "Could not find customer with ID " + customerId;
@@ -214,6 +228,30 @@ public class CustomerService {
 
 		showCustomerProfile();
 
+	}
+
+	public void newCustomer() throws ServletException, IOException {
+		loadCountryList();
+
+		String customerForm = "customer_form.jsp";
+		request.getRequestDispatcher(customerForm).forward(request, response);
+
+	}
+
+	private void loadCountryList() {
+		String[] countryCodes = Locale.getISOCountries();
+
+		Map<String, String> mapCountries = new TreeMap<>();
+
+		for (String countryCode : countryCodes) {
+			Locale locale = new Locale("", countryCode);
+			String code = locale.getCountry();
+			String name = locale.getDisplayCountry();
+
+			mapCountries.put(name, code);
+		}
+
+		request.setAttribute("mapCountries", mapCountries);
 	}
 
 }
