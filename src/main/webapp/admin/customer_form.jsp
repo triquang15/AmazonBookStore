@@ -104,12 +104,11 @@
                      <div class="input-group input-group-outline mb-3">                     
                      	<select class="form-select" name="country" id="country">
                      		<c:forEach items="${mapCountries }" var="country">
-                     			<option value="${country.value }">${country.key } </option>
+                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
                      		</c:forEach>
                      	</select>
                     </div>
-                             
-                                                                   
+                                                                                  
                     
                    <br>
                     <div class="text-center">

@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.devteam.common.HashGenerator;
 import com.devteam.entity.Customer;
 
 public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer> {
 
 	@Override
 	public Customer create(Customer t) {
+		String encryptedPassword = HashGenerator.generateMD5(t.getPassword());
+		t.setPassword(encryptedPassword);
 		t.setRegisterDate(new Date());
 		return super.create(t);
 	}

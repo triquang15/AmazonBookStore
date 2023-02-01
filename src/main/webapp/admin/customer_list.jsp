@@ -81,7 +81,7 @@
                       </td> 
 						 <td>
                       	<div class="d-flex flex-column justify-content-center">
-                        	<p class="text-xs font-weight-bold mb-0">${customer.country }</p>
+                        	<p class="text-xs font-weight-bold mb-0">${customer.countryName }</p>
                         </div>
                       </td>  
                  
