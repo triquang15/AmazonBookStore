@@ -62,7 +62,11 @@
                     </div>
                     
                     <div class="input-group input-group-outline mb-3">                      
-                      <input type="text"  placeholder="Full Name" id="fullName" name="fullName" size="45" value="${customer.fullname}" class="form-control">
+                      <input type="text"  placeholder="First Name" id="firstname" name="firstname" size="45" value="${customer.firstname}" class="form-control">
+                    </div>
+                    
+                    <div class="input-group input-group-outline mb-3">                      
+                      <input type="text"  placeholder="Last Name" id="lastname" name="lastname" size="45" value="${customer.lastname}" class="form-control">
                     </div>
                     
                     <div class="input-group input-group-outline mb-3">                     
@@ -78,7 +82,11 @@
                     </div>
                     
                     <div class="input-group input-group-outline mb-3">                     
-                      <input type="text" id="address" name="address" size="45" value="${customer.address}" placeholder="Address" class="form-control"> 
+                      <input type="text" id="address1" name="address1" size="45" value="${customer.addressLine1}" placeholder="Address Line 1" class="form-control"> 
+                    </div>
+                    
+                     <div class="input-group input-group-outline mb-3">                     
+                      <input type="text" id="address2" name="address2" size="45" value="${customer.addressLine2}" placeholder="Address Line 2" class="form-control"> 
                     </div>
                     
                      <div class="input-group input-group-outline mb-3">                     
@@ -86,11 +94,19 @@
                     </div>
                     
                      <div class="input-group input-group-outline mb-3">                     
-                      <input type="text" id="zipCode" name="zipCode" size="45" value="${customer.zipcode}" placeholder="Zip Code" class="form-control"> 
+                      <input type="text" id="state" name="state" size="45" value="${customer.state}" placeholder="State" class="form-control"> 
                     </div>
                     
                      <div class="input-group input-group-outline mb-3">                     
-                      <input type="text" id="country" name="country" size="45" value="${customer.country}" placeholder="Country" class="form-control"> 
+                      <input type="text" id="zipCode" name="zipCode" size="45" value="${customer.zipcode}" placeholder="Zip Code" class="form-control"> 
+                    </div>
+                    <label>Country</label>
+                     <div class="input-group input-group-outline mb-3">                     
+                     	<select class="form-select" name="country" id="country">
+                     		<c:forEach items="${mapCountries }" var="country">
+                     			<option value="${country.value }">${country.key } </option>
+                     		</c:forEach>
+                     	</select>
                     </div>
                              
                                                                    
@@ -124,7 +140,8 @@
 					required: true,
 					email: true
 				},
-				fullName: "required",
+				firstname: "required",
+				lastname: "required",
 				password: "required",
 				
 				confirmPassword: {
@@ -133,8 +150,10 @@
 				},
 				
 				phone: "required",								
-				address: "required",
+				address1: "required",
+				address2: "required",
 				city: "required",
+				state: "required",
 				zipCode: "required",
 				country: "required",
 			},
@@ -145,7 +164,8 @@
 					email: "Please enter a valid e-mail address"
 				},
 				
-				fullName: "Please enter full name",
+				firstname: "Please enter first name",
+				lastname: "Please enter last name",
 				password: "Please enter password",
 				
 				confirmPassword: {
@@ -154,8 +174,10 @@
 				},
 				
 				phone: "Please enter phone number",								
-				address: "Please enter address",
+				address1: "Please enter address line 1",
+				address2: "Please enter address line 2",
 				city: "Please enter city",
+				state: "Please enter state",
 				zipCode: "Please enter zip code",
 				country: "Please enter country",
 			}

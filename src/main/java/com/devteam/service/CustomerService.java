@@ -1,7 +1,11 @@
 package com.devteam.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -213,6 +217,26 @@ public class CustomerService {
 		customerDAO.update(customer);
 
 		showCustomerProfile();
+
+	}
+
+	public void newCustomer() throws ServletException, IOException {
+		String[] countryCodes = Locale.getISOCountries();
+
+		Map<String, String> mapCountries = new TreeMap<>();
+
+		for (String countryCode : countryCodes) {
+			Locale locale = new Locale("", countryCode);
+			String code = locale.getCountry();
+			String name = locale.getDisplayCountry();
+
+			mapCountries.put(name, code);
+		}
+
+		request.setAttribute("mapCountries", mapCountries);
+
+		String customerForm = "customer_form.jsp";
+		request.getRequestDispatcher(customerForm).forward(request, response);
 
 	}
 
