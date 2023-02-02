@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.devteam.client.shoppingcart.ShoppingCart;
+import com.devteam.common.CommonUtility;
 import com.devteam.dao.OrderDAO;
 import com.devteam.entity.Book;
 import com.devteam.entity.BookOrder;
@@ -70,9 +71,9 @@ public class OrderService {
 		String shippingAddress = address + ", " + city + ", " + zipcode + ", " + country;
 
 		BookOrder order = new BookOrder();
-		order.setRecipientName(recipientName);
-		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setFirstname(recipientName);
+		order.setPhone(recipientPhone);
+		order.setAddressLine1(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 
 		HttpSession session = request.getSession();
@@ -150,6 +151,7 @@ public class OrderService {
 			session.removeAttribute("NewBookPendingToAddToOrder");
 		}
 
+		CommonUtility.loadCountryList(request);
 		forwardToPage("order_form.jsp", request, response);
 	}
 
@@ -163,9 +165,9 @@ public class OrderService {
 		String paymentMethod = request.getParameter("paymentMethod");
 		String orderStatus = request.getParameter("orderStatus");
 
-		order.setRecipientName(recipientName);
-		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setFirstname(recipientName);
+		order.setPhone(recipientPhone);
+		order.setAddressLine1(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus(orderStatus);
 

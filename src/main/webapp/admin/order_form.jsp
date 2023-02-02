@@ -50,24 +50,58 @@
                       <input type="text" value="${order.orderDate}" class="form-control" readonly="readonly"/>
                     </div>
                     
-                    <label>Recipient Name:</label>
+                    <label>First Name:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text"  name="recipientName" value="${order.recipientName}" size="45" class="form-control" placeholder="Recipient Name"/>
+                      <input type="text" id="firstname" name="firstname" value="${order.firstname}" size="45" class="form-control" placeholder="First Name"/>
+                    </div>
+                    
+                     <label>Last Name:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="lastname" name="lastname" value="${order.lastname}" size="45" class="form-control" placeholder="Last Name"/>
                     </div>
                     
                     <label>Phone:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text" name="recipientPhone" value="${order.recipientPhone}" size="45" class="form-control" placeholder="Phone"/>
+                      <input type="text" id="phone" name="phone" value="${order.phone}" size="45" class="form-control" placeholder="Phone"/>
                     </div>
-                    <label>Ship To:</label>
+                    <label>Address Line 1:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text"  name="shippingAddress" value="${order.shippingAddress}" size="45" class="form-control" placeholder="Ship to"/>
+                      <input type="text" id="addressLine1" name="addressLine1" value="${order.addressLine1}" size="45" class="form-control" placeholder="Address Line 1"/>
+                    </div>
+                    <label>Address Line 2:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="addressLine2" name="addressLine1" value="${order.addressLine2}" size="45" class="form-control" placeholder="Address Line 2"/>
+                    </div>
+                    
+                    <label>City:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="city" name="city" value="${order.city}" size="45" class="form-control" placeholder="City"/>
+                    </div>
+                    
+                    <label>State:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="state" name="state" value="${order.state}" size="45" class="form-control" placeholder="State"/>
+                    </div>
+                    
+                    <label>Zip Code:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="zipcode" name="zipcode" value="${order.zipcode}" size="45" class="form-control" placeholder="Zip Code"/>
+                    </div>
+                    
+                    <label>Country:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <select class="form-select" name="country" id="country">
+                     		<c:forEach items="${mapCountries }" var="country">
+                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+                     		</c:forEach>
+                     	</select>
                     </div>
                     
                     <label>Payment Method:</label>
                     <div class="input-group input-group-outline mb-3">  
                      <select name="paymentMethod"  class="form-select">
-						<option value="Cash On Delivery">Cash On Delivery</option>
+						<option value="Cash On Delivery" <c:if test="${order.paymentMethod eq 'Cash On Delivery' }">selected='selected'</c:if> >Cash On Delivery</option>
+						<option value="paypal" <c:if test="${order.paymentMethod eq 'paypal' }">selected='selected'</c:if>>Paypal</option>
 					</select>
                     </div>
                     
@@ -166,9 +200,9 @@
 		$(document).ready(function() {
 			$("#orderForm").validate({
 				rules: {	
-					recipientName: "required",
-					recipientPhone: "required",
-					shippingAddress: "required",
+					firstname: "required",
+					phone: "required",
+					addressLine1: "required",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: {
@@ -178,9 +212,9 @@
 				},
 				
 				messages: {
-					recipientName: "Please enter recipient name",
-					recipientPhone: "Please enter recipient phone",
-					shippingAddress: "Please enter shipping address",
+					firstname: "Please enter first name",
+					phone: "Please enter phone",
+					addressLine1: "Please enter address line 1",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: { 

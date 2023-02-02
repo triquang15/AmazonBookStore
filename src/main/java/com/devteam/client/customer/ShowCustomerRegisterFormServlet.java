@@ -12,39 +12,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.devteam.common.CommonUtility;
+
 /**
  * Servlet implementation class ShowCustomerRegisterFormServlet
  */
 @WebServlet("/register")
 public class ShowCustomerRegisterFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ShowCustomerRegisterFormServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] countryCodes = Locale.getISOCountries();
+	public ShowCustomerRegisterFormServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-		Map<String, String> mapCountries = new TreeMap<>();
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		CommonUtility.loadCountryList(request);
 
-		for (String countryCode : countryCodes) {
-			Locale locale = new Locale("", countryCode);
-			String code = locale.getCountry();
-			String name = locale.getDisplayCountry();
-
-			mapCountries.put(name, code);
-		}
-
-		request.setAttribute("mapCountries", mapCountries);
-		
 		String registerForm = "client/register_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(registerForm);
 		dispatcher.forward(request, response);

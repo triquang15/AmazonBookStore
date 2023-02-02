@@ -36,10 +36,16 @@ public class OrderDAOTest {
 		customer.setCustomerId(6);
 
 		order.setCustomer(customer);
-		order.setRecipientName("Tri Quang");
-		order.setRecipientPhone("123456789");
-		order.setShippingAddress("123 South Street, New York, USA");
+		order.setFirstname("Tri");
+		order.setLastname("Quang");
+		order.setPhone("123456789");
+		order.setAddressLine1("123 South Street, New York, USA");
+		order.setAddressLine2("123 South Street, New York, USA");
+		order.setCity("Ho Chi Minh");
+		order.setState("Ho Chi Minh");
+		order.setCountry("US");
 		order.setPaymentMethod("Paypal");
+		order.setZipcode("10000");
 
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail = new OrderDetail();
@@ -53,6 +59,10 @@ public class OrderDAOTest {
 		orderDetails.add(orderDetail);
 
 		order.setOrderDetails(orderDetails);
+		order.setTax(6.5f);
+		order.setSubtotal(60.5f);
+		order.setShippingFee(2.0f);
+		order.setTotal(68f);
 
 		BookOrder savedOrder = orderDAO.create(order);
 
