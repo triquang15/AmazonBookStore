@@ -218,6 +218,7 @@ public class CustomerService {
 	}
 
 	public void showCustomerProfile() throws ServletException, IOException {
+		loadCountryList();
 		forwardToPage("client/customer_profile.jsp", request, response);
 	}
 

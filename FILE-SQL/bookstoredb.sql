@@ -136,7 +136,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (2,'Obama@gmail.com','Brack',' Obama','LonDon','California','California','Ho Chi Minh ','GB','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(3,'Ronaldo@gmail.com','Cris','Ronadol','LonDon','California','California','Ho Chi Minh ','CL','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(5,'quangtri.nguyen@dxc.com','Tri','Quang','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','VN','0987645761','324325','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(6,'sabra@uyetake.org','Saba','Ibra','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BS','0987645761','4365436','12345678','2023-01-17'),(7,'mina@gmail.com','Ali','Mina','LonDon','LonDon','California','Viet Nam','NZ','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-30'),(8,'charken_13@gmail.com','Ika','Char','Lon Don','Lon Don','Lon Don','Washington','BH','123 456 78 99','1245','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(9,'mitsue_tollner@yahoo.com','Mina','Ksa','Ho Chi Minh','Ho Chi Minh','Ho Chi Minh ','Ho Chi Minh City','BD','0987645761','4365436','25d55ad283aa400af464c76d713c07ad','2023-02-01');
+INSERT INTO `customer` VALUES (2,'Obama@gmail.com','Brack',' Obama','LonDon','California','California','Ho Chi Minh ','GB','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(3,'Ronaldo@gmail.com','Cris','Ronadol','LonDon','California','California','Ho Chi Minh ','CL','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(5,'quangtri.nguyen@dxc.com','Tri','Quang','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BB','0987645761','324325','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(6,'sabra@uyetake.org','Saba','Ibra','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BS','0987645761','4365436','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(7,'mina@gmail.com','Ali','Mina','LonDon','LonDon','California','Viet Nam','NZ','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-30'),(8,'charken_13@gmail.com','Ika','Char','Lon Don','Lon Don','Lon Don','Washington','BH','123 456 78 99','1245','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(9,'mitsue_tollner@yahoo.com','Mina','Ksa','Ho Chi Minh','Ho Chi Minh','Ho Chi Minh ','Ho Chi Minh City','BD','0987645761','4365436','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(10,'cha_lex15@gmail.com','Chax','Jond','Ho Chi Minh','Ho Chi Minh','Ha Noi','New Jersey','AS','0987645761','4365436','550e1bafe077ff0b0b67f4e32f29d751','2023-02-01');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-01 16:33:39
+-- Dump completed on 2023-02-02 10:30:42
