@@ -70,7 +70,7 @@
                     </div>
                     <label>Address Line 2:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text" id="addressLine2" name="addressLine1" value="${order.addressLine2}" size="45" class="form-control" placeholder="Address Line 2"/>
+                      <input type="text" id="addressLine2" name="addressLine2" value="${order.addressLine2}" size="45" class="form-control" placeholder="Address Line 2"/>
                     </div>
                     
                     <label>City:</label>
@@ -101,7 +101,7 @@
                     <div class="input-group input-group-outline mb-3">  
                      <select name="paymentMethod"  class="form-select">
 						<option value="Cash On Delivery" <c:if test="${order.paymentMethod eq 'Cash On Delivery' }">selected='selected'</c:if> >Cash On Delivery</option>
-						<option value="paypal" <c:if test="${order.paymentMethod eq 'paypal' }">selected='selected'</c:if>>Paypal</option>
+						<option value="Paypal" <c:if test="${order.paymentMethod eq 'Paypal' }">selected='selected'</c:if>>Paypal</option>
 					</select>
                     </div>
                     
@@ -127,6 +127,8 @@
 			      <th scope="col">Price</th>
 			      <th scope="col">Quantity</th>
 			      <th scope="col">Subtotal</th>
+			      <th scope="col">Tax</th>
+			      <th scope="col">Shipping Fee</th>
 			      <th scope="col">Action</th>
 			    </tr>
 			  </thead>
@@ -140,9 +142,11 @@
 						$${orderDetail.book.price}</td>
 					<td>
 						<input type="hidden" name="bookId" value="${orderDetail.book.bookId}" />
-						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="5" />
+						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="3" />
 					</td>
 					<td>$${orderDetail.subtotal}</td>
+					<td><input type="text" size="3" name="tax" id="tax" value="${order.tax }" /></td>
+					<td><input type="text" size="3" name="shippingFee" id="shippingFee" value="${order.shippingFee }" /></td>
 					<td><a href="remove_book_from_order?id=${orderDetail.book.bookId}">Remove</a></td>
 			    </tr>			   
 			   </c:forEach>
@@ -201,20 +205,35 @@
 			$("#orderForm").validate({
 				rules: {	
 					firstname: "required",
+					lastname: "required",
 					phone: "required",
+					city: "required",
+					zipcode: "required",
+					state: "required",
+					country: "required",
 					addressLine1: "required",
+					addressLine2: "required",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: {
 							required: true, number: true, min: 1
 						},
-					</c:forEach>					
+					</c:forEach>	
+						
+					shippingFee: {required: true, number: true, min: 0},
+					tax: {required: true, number: true, min: 0}
 				},
 				
 				messages: {
 					firstname: "Please enter first name",
+					lastname: "Please enter last name",
 					phone: "Please enter phone",
+					zipcode: "Please enter zipcode",
+					state: "Please enter state",
+					city: "Please enter city",
+					country: "Please select country",
 					addressLine1: "Please enter address line 1",
+					addressLine2: "Please enter address line 2",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: { 
@@ -222,7 +241,19 @@
 							number: "Quantity must be a number",
 							min: "Quantity must be greater than 0"
 						},
-					</c:forEach>						
+					</c:forEach>	
+						
+						shippingFee: {
+							required: "Please enter shipping fee",
+							number: "Shipping fee must be a number",
+							min: "Shipping fee must be greater than 0"
+						},
+						
+						tax: {
+							required: "Please enter tax",
+							number: "Tax must be a number",
+							min: "Tax must be greater than 0"
+						}
 				}
 			});
 			

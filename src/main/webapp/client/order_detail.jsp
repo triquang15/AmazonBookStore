@@ -76,16 +76,20 @@
 				<td>$${order.total}</td>
 			</tr>			
 			<tr>
-				<td><b>Recipient Name: </b></td>
-				<td>${order.recipientName}</td>
+				<td><b>First Name: </b></td>
+				<td>${order.firstname}</td>
 			</tr>
 			<tr>
-				<td><b>Recipient Phone: </b></td>
-				<td>${order.recipientPhone}</td>
+				<td><b>Last Name: </b></td>
+				<td>${order.lastname}</td>
+			</tr>
+			<tr>
+				<td><b>Phone: </b></td>
+				<td>${order.phone}</td>
 			</tr>
 			<tr>
 				<td><b>Ship to: </b></td>
-				<td>${order.shippingAddress}</td>
+				<td>${order.addressLine1}</td>
 			</tr>			
 			<tr>
 				<td><b>Payment Method: </b></td>

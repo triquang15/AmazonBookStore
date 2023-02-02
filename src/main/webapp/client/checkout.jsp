@@ -62,17 +62,30 @@
                   <h3>Billing Address</h3>
                   <form class="row contact_form" id="orderForm" action="place_order" method="post">
                     <div class="col-md-6 form-group p_star">
-                      <input type="text" class="form-control" name="recipientName" value="${loggedCustomer.fullname}" placeholder="Recipient Name"/>
+                      <input type="text" class="form-control" name="firstname" value="${loggedCustomer.firstname}" placeholder="First Name"/>
                     </div>
                     <div class="col-md-6 form-group p_star">
-                      <input type="text" class="form-control" name="recipientPhone" value="${loggedCustomer.phone}" placeholder="Recipient Phone"/>                   
+                      <input type="text" class="form-control" name="lastname" value="${loggedCustomer.lastname}" placeholder="Last Name"/>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                      <input type="text" class="form-control" name="phone" value="${loggedCustomer.phone}" placeholder="Phone"/>                   
                     </div>
                     <div class="col-md-12 form-group">
-                      <input type="text" class="form-control" name="address" value="${loggedCustomer.address}" placeholder="Address" />
+                      <input type="text" class="form-control" name="addressLine1" value="${loggedCustomer.addressLine1}" placeholder="Address Line 1" />
                     </div>
+                    
+                     <div class="col-md-12 form-group">
+                      <input type="text" class="form-control" name="addressLine2" value="${loggedCustomer.addressLine2}" placeholder="Address Line 2" />
+                    </div>
+                    
                     <div class="col-md-6 form-group p_star">
                       <input type="text" class="form-control" name="city" value="${loggedCustomer.city}" placeholder="City" />
                     </div>
+                    
+                    <div class="col-md-6 form-group p_star">
+                      <input type="text" class="form-control" name="state" value="${loggedCustomer.state}" placeholder="State" />
+                    </div>
+                    
                     <div class="col-md-6 form-group p_star">
                       <input type="text" class="form-control" name="zipcode" value="${loggedCustomer.zipcode}" placeholder="Zip Code" />
                     </div>
@@ -175,19 +188,25 @@
 		$(document).ready(function() {
 			$("#orderForm").validate({
 				rules: {
-					recipientName: "required",
-					recipientPhone: "required",
-					address: "required",
+					firstname: "required",
+					lastname: "required",
+					phone: "required",
+					addressLine1: "required",
+					addressLine2: "required",
 					city: "required",
+					state: "required",
 					zipcode: "required",
 					country: "required",
 				},
 				
 				messages: {
-					recipientName: "Please enter recipient name",
-					recipientPhone: "Please enter phone number",
-					address: "Please enter street address",
+					firstname: "Please enter first name",
+					lastname: "Please enter last name",
+					phone: "Please enter phone number",
+					addressLine1: "Please enter street addressLine1",
+					addressLine2: "Please enter street addressLine1",
 					city: "Please enter city",
+					state: "Please enter state",
 					zipcode: "Please enter zip code",
 					country: "Please enter country",					
 				}

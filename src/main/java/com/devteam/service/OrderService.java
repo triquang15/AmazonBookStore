@@ -61,19 +61,28 @@ public class OrderService {
 	}
 
 	public void placeOrder() throws ServletException, IOException {
-		String recipientName = request.getParameter("recipientName");
-		String recipientPhone = request.getParameter("recipientPhone");
-		String address = request.getParameter("address");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String phone = request.getParameter("phone");
+		String addressLine1 = request.getParameter("addressLine1");
+		String addressLine2 = request.getParameter("addressLine2");
 		String city = request.getParameter("city");
+		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
 		String paymentMethod = request.getParameter("paymentMethod");
-		String shippingAddress = address + ", " + city + ", " + zipcode + ", " + country;
+		String shippingAddress = addressLine1 + ", " + addressLine2 + ", " + city + ", " + zipcode + ", " + country;
 
 		BookOrder order = new BookOrder();
-		order.setFirstname(recipientName);
-		order.setPhone(recipientPhone);
+		order.setFirstname(firstname);
+		order.setLastname(lastname);
+		order.setPhone(phone);
+		order.setState(state);
+		order.setCity(city);
+		order.setZipcode(zipcode);
+		order.setCountry(country);
 		order.setAddressLine1(shippingAddress);
+		order.setAddressLine2(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 
 		HttpSession session = request.getSession();
@@ -159,15 +168,33 @@ public class OrderService {
 		HttpSession session = request.getSession();
 		BookOrder order = (BookOrder) session.getAttribute("order");
 
-		String recipientName = request.getParameter("recipientName");
-		String recipientPhone = request.getParameter("recipientPhone");
-		String shippingAddress = request.getParameter("shippingAddress");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String phone = request.getParameter("phone");
+		String address1 = request.getParameter("addressLine1");
+		String address2 = request.getParameter("addressLine2");
+		String city = request.getParameter("city");
+		String state = request.getParameter("state");
+		String zipcode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
+		
+		float shippingFee = Float.parseFloat(request.getParameter("shippingFee"));
+		float tax = Float.parseFloat(request.getParameter("tax"));
+		
 		String paymentMethod = request.getParameter("paymentMethod");
 		String orderStatus = request.getParameter("orderStatus");
 
-		order.setFirstname(recipientName);
-		order.setPhone(recipientPhone);
-		order.setAddressLine1(shippingAddress);
+		order.setFirstname(firstname);
+		order.setLastname(lastname);
+		order.setAddressLine2(address2);
+		order.setCity(city);
+		order.setState(state);
+		order.setShippingFee(shippingFee);
+		order.setTax(tax);
+		order.setZipcode(zipcode);
+		order.setCountry(country);
+		order.setPhone(phone);
+		order.setAddressLine1(address1);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus(orderStatus);
 
@@ -202,6 +229,10 @@ public class OrderService {
 			totalAmount += subtotal;
 		}
 
+		order.setSubtotal(totalAmount);
+		totalAmount += shippingFee;
+		totalAmount += tax;
+		
 		order.setTotal(totalAmount);
 
 		orderDao.update(order);
