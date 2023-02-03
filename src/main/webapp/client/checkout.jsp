@@ -91,7 +91,11 @@
                     </div>
                     
                     <div class="col-md-12 form-group p_star">
-                      <input type="text" class="form-control" name="country" value="${loggedCustomer.country}" placeholder="Country" />
+                       <select class="form-select" size="3" aria-label="size 3 select example" name="country" id="country">
+				                     		<c:forEach items="${mapCountries }" var="country">
+				                     			<option value="${country.value }" <c:if test='${loggedCustomer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+				                     		</c:forEach>
+				                     	</select>
                     </div>
                    
                   
@@ -100,36 +104,37 @@
                   <div class="order_box">
                     <h2>Your Order</h2>
                     <ul class="list">
-                      <li>
-                        <a href="#">Product
-                          <span>Total</span>
-                        </a>
-                      </li>
-                      
+                     
                       <c:forEach items="${cart.items}" var="item">
                       <li>
                         <a href="#">${item.key.title}
-                          <span class="middle">x ${cart.totalQuantity}</span>
+                          <span class="middle">x ${item.value}</span>
                           <span class="last">$${item.key.price}</span>
                         </a>
-                      </li>
+                      </li>      
+                      
                       </c:forEach>
                      
                     </ul>
                     <ul class="list list_2">
                       <li>
                         <a href="#">Subtotal
-                          <span>$${item.value * item.key.price}</span>
+                          <span>$${cart.totalAmount}</span>
                         </a>
                       </li>
                       <li>
-                        <a href="#">Shipping
-                          <span>Free</span>
+                        <a href="#">Shipping Fee
+                          <span>$${shippingFee}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">Tax
+                          <span>$${tax}</span>
                         </a>
                       </li>
                       <li>
                         <a href="#">Total
-                          <span>$${cart.totalAmount}</span>
+                          <span>$${total}</span>
                         </a>
                       </li>
                     </ul>
@@ -140,22 +145,13 @@
                         <label for="f-option5">Check payments</label>
                         <select name="paymentMethod" class="form-select">
 							<option value="Cash On Delivery">Cash On Delivery</option>
+							<option value="PayPal">PayPal</option>
 						</select>
                       </div>
                    
                     </div>
                     <br><br>
-                  
-                    <div class="payment_item active">
-                      <div class="radion_btn">
-                        <input type="radio" id="f-option6" name="selector" />
-                        <label for="f-option6">Paypal </label>
-                       
-                        <div class="check"></div>
-                      </div>
-                    
-                    </div>
-                  
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn primary checkout_btn_1" type="submit">Complete Checkout</button>
                   </div>
                 </div>

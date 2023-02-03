@@ -101,7 +101,7 @@
                     <div class="input-group input-group-outline mb-3">  
                      <select name="paymentMethod"  class="form-select">
 						<option value="Cash On Delivery" <c:if test="${order.paymentMethod eq 'Cash On Delivery' }">selected='selected'</c:if> >Cash On Delivery</option>
-						<option value="Paypal" <c:if test="${order.paymentMethod eq 'Paypal' }">selected='selected'</c:if>>Paypal</option>
+						<option value="PayPal" <c:if test="${order.paymentMethod eq 'PayPal' }">selected='selected'</c:if>>PayPal</option>
 					</select>
                     </div>
                     

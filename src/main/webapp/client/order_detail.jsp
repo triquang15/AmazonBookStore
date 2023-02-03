@@ -122,12 +122,19 @@
 				</c:forEach>
 				<tr>
 				<td colspan="4" align="right">
-					<b><i>TOTAL:</i></b>
+					<i>Tax:</i>
+					<b>$${order.tax}</b>
 				</td>
 				<td>
+				Items: 
 					<b>${order.bookCopies}</b>
 				</td>
 				<td>
+						Shipping Fee: 
+					<b>$${order.shippingFee}</b>
+				</td>
+				<td>
+				<b><i>Total:</i></b>
 					<b>$${order.total}</b>
 				</td>
 			</tr>

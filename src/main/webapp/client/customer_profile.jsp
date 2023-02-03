@@ -105,7 +105,7 @@
                                     <div class="col-md-12 form-group p_star">
                                        <select class="form-select" name="country" id="country">
 			                     		<c:forEach items="${mapCountries }" var="country">
-			                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+			                     			<option value="${country.value }" <c:if test='${loggedCustomer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
 			                     		</c:forEach>
                      			</select>
                                     </div>

@@ -57,6 +57,19 @@ public class OrderService {
 	}
 
 	public void showCheckoutForm() throws ServletException, IOException {
+		HttpSession httpSession = request.getSession();
+		ShoppingCart shoppingCart = (ShoppingCart) httpSession.getAttribute("cart");
+
+		float tax = shoppingCart.getTotalAmount() * 0.1f;
+		float shippingFee = shoppingCart.getTotalQuantity() * 1.0f;
+		float total = shoppingCart.getTotalAmount() + tax + shippingFee;
+
+		httpSession.setAttribute("tax", tax);
+		httpSession.setAttribute("shippingFee", shippingFee);
+		httpSession.setAttribute("total", total);
+
+		CommonUtility.loadCountryList(request);
+
 		forwardToPage("client/checkout.jsp", request, response);
 	}
 
@@ -71,7 +84,6 @@ public class OrderService {
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
 		String paymentMethod = request.getParameter("paymentMethod");
-		String shippingAddress = addressLine1 + ", " + addressLine2 + ", " + city + ", " + zipcode + ", " + country;
 
 		BookOrder order = new BookOrder();
 		order.setFirstname(firstname);
@@ -81,8 +93,8 @@ public class OrderService {
 		order.setCity(city);
 		order.setZipcode(zipcode);
 		order.setCountry(country);
-		order.setAddressLine1(shippingAddress);
-		order.setAddressLine2(shippingAddress);
+		order.setAddressLine1(addressLine1);
+		order.setAddressLine2(addressLine2);
 		order.setPaymentMethod(paymentMethod);
 
 		HttpSession session = request.getSession();
@@ -108,10 +120,19 @@ public class OrderService {
 			orderDetail.setSubtotal(subtotal);
 
 			orderDetails.add(orderDetail);
+
 		}
 
 		order.setOrderDetails(orderDetails);
-		order.setTotal(shoppingCart.getTotalAmount());
+
+		float tax = (Float) session.getAttribute("tax");
+		float shippingFee = (Float) session.getAttribute("shippingFee");
+		float total = (Float) session.getAttribute("total");
+
+		order.setSubtotal(shoppingCart.getTotalAmount());
+		order.setTax(tax);
+		order.setShippingFee(shippingFee);
+		order.setTotal(total);
 
 		orderDao.create(order);
 
@@ -177,10 +198,10 @@ public class OrderService {
 		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
-		
+
 		float shippingFee = Float.parseFloat(request.getParameter("shippingFee"));
 		float tax = Float.parseFloat(request.getParameter("tax"));
-		
+
 		String paymentMethod = request.getParameter("paymentMethod");
 		String orderStatus = request.getParameter("orderStatus");
 
@@ -232,7 +253,7 @@ public class OrderService {
 		order.setSubtotal(totalAmount);
 		totalAmount += shippingFee;
 		totalAmount += tax;
-		
+
 		order.setTotal(totalAmount);
 
 		orderDao.update(order);
