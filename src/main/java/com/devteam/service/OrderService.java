@@ -20,6 +20,9 @@ import com.devteam.entity.Book;
 import com.devteam.entity.BookOrder;
 import com.devteam.entity.Customer;
 import com.devteam.entity.OrderDetail;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.ShippingAddress;
 
 public class OrderService {
 	private OrderDAO orderDao;
@@ -74,6 +77,21 @@ public class OrderService {
 	}
 
 	public void placeOrder() throws ServletException, IOException {
+		String paymentMethod = request.getParameter("paymentMethod");
+		BookOrder order = readOrderInfor();
+
+		if (paymentMethod.equals("PayPal")) {
+			PaymentService paymentService = new PaymentService(request, response);
+			request.getSession().setAttribute("order4Paypal", order);
+			paymentService.authorizePayment(order);
+		} else {
+			placeOrderCOD(order);
+		}
+
+	}
+
+	private BookOrder readOrderInfor() {
+		String paymentMethod = request.getParameter("paymentMethod");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String phone = request.getParameter("phone");
@@ -83,7 +101,6 @@ public class OrderService {
 		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
-		String paymentMethod = request.getParameter("paymentMethod");
 
 		BookOrder order = new BookOrder();
 		order.setFirstname(firstname);
@@ -134,12 +151,16 @@ public class OrderService {
 		order.setShippingFee(shippingFee);
 		order.setTotal(total);
 
-		orderDao.create(order);
+		return order;
 
-		shoppingCart.clear();
+	}
+
+	private void placeOrderCOD(BookOrder order) throws ServletException, IOException {
+		saveOrder(order);
 
 		String message = "Thank you. Your order has been received.";
 		showMessageFrontend(message, request, response);
+
 	}
 
 	public void listOrderByCustomer() throws ServletException, IOException {
@@ -278,5 +299,35 @@ public class OrderService {
 					+ ", or it might have been deleted by another admin.";
 			showMessageBackend(message, request, response);
 		}
+	}
+
+	public Integer proceedPaypal(Payment payment) {
+		BookOrder order = (BookOrder) request.getSession().getAttribute("order4Paypal");
+
+		ItemList itemList = payment.getTransactions().get(0).getItemList();
+		ShippingAddress shippingAddress = itemList.getShippingAddress();
+		String phoneNumber = itemList.getShippingPhoneNumber();
+		String recipientName = shippingAddress.getRecipientName();
+
+		String[] names = recipientName.split(" ");
+		order.setFirstname(names[0]);
+		order.setLastname(names[1]);
+		order.setAddressLine1(shippingAddress.getLine1());
+		order.setAddressLine2(shippingAddress.getLine2());
+		order.setCity(shippingAddress.getCity());
+		order.setState(shippingAddress.getState());
+		order.setCountry(shippingAddress.getCountryCode());
+		order.setPhone(phoneNumber);
+
+		return saveOrder(order);
+	}
+
+	private Integer saveOrder(BookOrder order) {
+		BookOrder savedOrder = orderDao.create(order);
+
+		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
+		shoppingCart.clear();
+
+		return savedOrder.getOrderId();
 	}
 }
