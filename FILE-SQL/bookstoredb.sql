@@ -64,17 +64,26 @@ CREATE TABLE `book_order` (
   `order_id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
   `order_date` datetime NOT NULL,
-  `shipping_address` varchar(256) NOT NULL,
-  `recipient_name` varchar(30) NOT NULL,
-  `recipient_phone` varchar(15) NOT NULL,
+  `r_address_line1` varchar(256) NOT NULL,
+  `r_address_line2` varchar(256) DEFAULT NULL,
+  `r_firstname` varchar(30) NOT NULL,
+  `r_lastname` varchar(30) DEFAULT NULL,
+  `r_phone` varchar(15) NOT NULL,
+  `r_country` varchar(45) DEFAULT NULL,
+  `r_state` varchar(45) DEFAULT NULL,
+  `r_city` varchar(45) DEFAULT NULL,
+  `r_zipcode` varchar(24) DEFAULT NULL,
   `payment_method` varchar(20) NOT NULL,
+  `shipping_fee` float DEFAULT NULL,
+  `tax` float DEFAULT NULL,
+  `subtotal` float DEFAULT NULL,
   `total` float NOT NULL,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `order_id_UNIQUE` (`order_id`),
   KEY `customer_fk_idx` (`customer_id`),
   CONSTRAINT `customer_fk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +92,7 @@ CREATE TABLE `book_order` (
 
 LOCK TABLES `book_order` WRITE;
 /*!40000 ALTER TABLE `book_order` DISABLE KEYS */;
-INSERT INTO `book_order` VALUES (2,6,'2023-01-21 15:07:27','Ho Chi Minh','Tri Quang','13425236437','Cash On Delivery',272.58,'Cancelled'),(3,5,'2023-01-30 17:24:06','Ho Chi Minh - Viet Nam, Ho Chi Minh , 324325, Viet Nam','Tri Quang','0987645761','Cash On Delivery',68.9,'Completed'),(4,6,'2023-01-30 17:29:22','Ho Chi Minh - Viet Nam, Ho Chi Minh , 4365436, Viet Nam','quangtri.nguyen','0987645761','Cash On Delivery',525.64,'Delivered');
+INSERT INTO `book_order` VALUES (4,6,'2023-01-30 17:29:22','Ho Chi Minh - Viet Nam, Ho Chi Minh , 4365436, Viet Nam','Ho Chi Minh','quangtri','nguyen','0987774191','AF','Cambridge','Ha Noi','1232142','Cash On Delivery',4,5,390,399,'Cancelled'),(6,6,'2023-02-02 11:27:07','123 South Street, New York, USA','123 South Street, New York, USA','Saba',' Ibra','0987774191','AF','Ho Chi Minh','Ho Chi Minh','10000','Paypal',15,5,456,476,'Completed'),(7,5,'2023-02-02 15:39:20','Ho Chi Minh - Viet Nam, California, Ho Chi Minh , 324325, BB','Ho Chi Minh - Viet Nam, California, Ho Chi Minh , 324325, BB','Tri','Quang','0987774191','LB','Ho Chi Minh ','Ho Chi Minh ','324325','Cash On Delivery',2,3,158,163,'Shipping'),(10,5,'2023-02-03 17:31:07','Ho Chi Minh - Viet Nam','California','Tri','Quang','0987774191','BB','Ho Chi Minh ','Ho Chi Minh ','324325','PayPal',2,10,100,112,'Processing'),(11,5,'2023-02-03 17:39:06','Ho Chi Minh - Viet Nam','California','Tri','Quang','0987774191','AF','Ho Chi Minh ','Ho Chi Minh ','324325','PayPal',1,14.5,145,160.5,'Shipping'),(12,5,'2023-02-03 18:41:23','Ho Chi Minh - Viet Nam','California','Tri','Quang','0987774191','BB','Ho Chi Minh ','Ho Chi Minh ','324325','PayPal',3,9,90,102,'Processing'),(13,5,'2023-02-03 18:44:13','Ho Chi Minh - Viet Nam','California','Tri','Quang','0987774191','BB','Ho Chi Minh ','Ho Chi Minh ','324325','PayPal',1,14.5,145,160.5,'Processing');
 /*!40000 ALTER TABLE `book_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +145,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_id_UNIQUE` (`customer_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +154,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (2,'Obama@gmail.com','Brack',' Obama','LonDon','California','California','Ho Chi Minh ','GB','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(3,'Ronaldo@gmail.com','Cris','Ronadol','LonDon','California','California','Ho Chi Minh ','CL','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(5,'quangtri.nguyen@dxc.com','Tri','Quang','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','VN','0987645761','324325','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(6,'sabra@uyetake.org','Saba','Ibra','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BS','0987645761','4365436','12345678','2023-01-17'),(7,'mina@gmail.com','Ali','Mina','LonDon','LonDon','California','Viet Nam','NZ','098678123','124354','25d55ad283aa400af464c76d713c07ad','2023-01-30'),(8,'charken_13@gmail.com','Ika','Char','Lon Don','Lon Don','Lon Don','Washington','BH','123 456 78 99','1245','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(9,'mitsue_tollner@yahoo.com','Mina','Ksa','Ho Chi Minh','Ho Chi Minh','Ho Chi Minh ','Ho Chi Minh City','BD','0987645761','4365436','25d55ad283aa400af464c76d713c07ad','2023-02-01');
+INSERT INTO `customer` VALUES (2,'Obama@gmail.com','Brack',' Obama','LonDon','California','California','Ho Chi Minh ','GB','0987774191','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(3,'Ronaldo@gmail.com','Cris','Ronadol','LonDon','California','California','Ho Chi Minh ','CL','0987774191','124354','25d55ad283aa400af464c76d713c07ad','2023-01-16'),(5,'quangtri.nguyen@dxc.com','Tri','Quang','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BB','0987774191','324325','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(6,'sabra@uyetake.org','Saba','Ibra','Ho Chi Minh - Viet Nam','California','Ho Chi Minh ','Ho Chi Minh ','BS','0987774191','4365436','25d55ad283aa400af464c76d713c07ad','2023-01-17'),(7,'mina@gmail.com','Ali','Mina','LonDon','LonDon','California','Viet Nam','NZ','0987774191','124354','25d55ad283aa400af464c76d713c07ad','2023-01-30'),(8,'charken_13@gmail.com','Ika','Char','Lon Don','Lon Don','Lon Don','Washington','BH','0987774191','1245','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(9,'mitsue_tollner@yahoo.com','Mina','Ksa','Ho Chi Minh','Ho Chi Minh','Ho Chi Minh ','Ho Chi Minh City','BD','0987774191','4365436','25d55ad283aa400af464c76d713c07ad','2023-02-01'),(10,'cha_lex15@gmail.com','Chax','Jond','Ho Chi Minh','Ho Chi Minh','Ha Noi','New Jersey','AS','0987774191','4365436','550e1bafe077ff0b0b67f4e32f29d751','2023-02-01'),(11,'triquang.15qt@gmail.com','Mr','Quang','Ho Chi Minh','Ho Chi Minh','Ha Noi','Cambridge','AL','0987774191','4365436','25d55ad283aa400af464c76d713c07ad','2023-02-03'),(12,'mino_af@gmail.com','Mino','Lia','Ho Chi Minh','Ho Chi Minh','Ho Chi Minh ','Washington','BD','0983174141','4365436','550e1bafe077ff0b0b67f4e32f29d751','2023-02-03');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +183,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (2,2,2,115.78),(2,7,2,156.8),(3,11,1,68.9),(4,4,1,57.89),(4,13,1,467.75);
+INSERT INTO `order_detail` VALUES (4,4,2,180),(4,13,3,66),(6,2,7,420),(6,14,1,36),(4,14,4,144),(7,10,1,70),(7,13,4,88),(10,6,1,45),(10,5,1,55),(11,3,1,145),(12,11,2,30),(12,2,1,60),(13,3,1,145);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-01 16:33:39
+-- Dump completed on 2023-02-03 19:59:09

@@ -1,17 +1,14 @@
 package com.devteam.service;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.devteam.common.CommonUtility;
 import com.devteam.common.HashGenerator;
 import com.devteam.dao.CustomerDAO;
 import com.devteam.dao.OrderDAO;
@@ -100,7 +97,7 @@ public class CustomerService {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
 		
-		loadCountryList();
+		CommonUtility.loadCountryList(request);
 
 		if (customer == null) {
 			String message = "Could not find customer with ID " + customerId;
@@ -218,6 +215,7 @@ public class CustomerService {
 	}
 
 	public void showCustomerProfile() throws ServletException, IOException {
+		CommonUtility.loadCountryList(request);
 		forwardToPage("client/customer_profile.jsp", request, response);
 	}
 
@@ -231,27 +229,11 @@ public class CustomerService {
 	}
 
 	public void newCustomer() throws ServletException, IOException {
-		loadCountryList();
+		CommonUtility.loadCountryList(request);
 
 		String customerForm = "customer_form.jsp";
 		request.getRequestDispatcher(customerForm).forward(request, response);
 
-	}
-
-	private void loadCountryList() {
-		String[] countryCodes = Locale.getISOCountries();
-
-		Map<String, String> mapCountries = new TreeMap<>();
-
-		for (String countryCode : countryCodes) {
-			Locale locale = new Locale("", countryCode);
-			String code = locale.getCountry();
-			String name = locale.getDisplayCountry();
-
-			mapCountries.put(name, code);
-		}
-
-		request.setAttribute("mapCountries", mapCountries);
 	}
 
 }

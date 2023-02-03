@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>My Orders - Amazon Books Store</title>
+    <title> Payment Receipt - Amazon Books Store</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png">
@@ -42,107 +42,88 @@
           <div class="container">
             <div class="returning_customer">
               <div class="check_title">
-                <h3 class="text-center">
-                   ORDERS DETAILS
-                </h3>
+                <h2 class="text-center">
+                  You have made payment successfully. Thank you for purchasing!
+                </h2>
               </div>
-              
-              <c:if test="${order == null}">
-	              <p class="text-center" style="color: red;">
-	                Sorry, you are not authorized to view this order.
-	              </p>
-              </c:if>
-              
+             
             </div>
-          
+          <br>
             <div class="billing_details ">
               <div class="row">
-              
+              <h2>Your Payment Receipt</h2>
               <table class="table table-hover">
-			<tr>
-				<td><b>Order Status: </b></td>
-				<td>${order.status}</td>
-			</tr>		
-			<tr>
-				<td><b>Order Date: </b></td>
-				<td>${order.orderDate}</td>
-			</tr>			
-			<tr>
-				<td><b>Quantity: </b></td>
-				<td>${order.bookCopies}</td>
-			</tr>
-			<tr>
-				<td><b>Total Amount: </b></td>
-				<td>$${order.total}</td>
-			</tr>			
-			<tr>
-				<td><b>First Name: </b></td>
-				<td>${order.firstname}</td>
-			</tr>
-			<tr>
-				<td><b>Last Name: </b></td>
-				<td>${order.lastname}</td>
-			</tr>
-			<tr>
-				<td><b>Phone: </b></td>
-				<td>${order.phone}</td>
-			</tr>
-			<tr>
-				<td><b>Ship to: </b></td>
-				<td>${order.addressLine1}</td>
-			</tr>			
-			<tr>
-				<td><b>Payment Method: </b></td>
-				<td>${order.paymentMethod}</td>
-			</tr>
-												
-		</table>
+				<tr>
+					<td><b>First Name: </b></td>
+					<td>${payer.firstName}</td>
+				</tr>		
+				<tr>
+					<td><b>Last Name: </b></td>
+					<td>${payer.lastName}</td>
+				</tr>			
+				<tr>
+					<td><b>Email: </b></td>
+					<td>${payer.email}</td>
+				</tr>
+										
+			</table>
+			
+			<h2>Order Details</h2>
+              <table class="table table-hover">
+				<tr>
+					<td><b>Order ID: </b></td>
+					<td>${orderId}</td>
+				</tr>		
+				<tr>
+					<td><b>Customer: </b></td>
+					<td>${loggedCustomer.fullname}</td>
+				</tr>	
+				<tr>
+					<td><b>Description: </b></td>
+					<td>${transaction.description}</td>
+				</tr>
+					
+			</table>
                 
-			<table border="1" cellpadding="5" class="table table-striped">
+                <table border="1" cellpadding="5" class="table table-striped">
 				<tr>
 					<th>No</th>
-					<th>Book</th>
-					<th>Author</th>
-					<th>Price</th>
+					<th>Name</th>
 					<th>Quantity</th>
+					<th>Price</th>
 					<th>Subtotal</th>
 				</tr>
-				<c:forEach items="${order.orderDetails}" var="orderDetail" varStatus="status">
+				<c:forEach items="${transaction.itemList.items}" var="item" varStatus="status">
 				<tr>
 					<td>${status.index + 1}</td>
-				<td>
-					<img style="vertical-align: middle;" src="data:image/jpg;base64,${orderDetail.book.base64Image}" width="48" height="64" />
-					${orderDetail.book.title}
-				</td>
-				<td>${orderDetail.book.author}</td>
-				<td>$${orderDetail.book.price}</td>
-				<td>${orderDetail.quantity}</td>
-				<td>$${orderDetail.subtotal}</td>
+				<td>${item.name}</td>
+				<td>${item.quantity}</td>
+				<td>$${item.price}</td>
+				<td>$${item.quantity * item.price}</td>
+
 				</tr>
 				</c:forEach>
 				<tr>
 				<td colspan="4" align="right">
 					<i>Tax:</i>
-					<b>$${order.tax}</b>
+					<b>$${transaction.amount.details.tax}</b>
 				</td>
 				<td>
-				Items: 
-					<b>${order.bookCopies}</b>
+				Original Price:: 
+					<b>$${transaction.amount.details.subtotal}</b>
 				</td>
 				<td>
 						Shipping Fee: 
-					<b>$${order.shippingFee}</b>
+					<b>$${transaction.amount.details.shipping}</b>
 				</td>
 				<td>
 				<b><i>Total:</i></b>
-					<b>$${order.total}</b>
+					<b>$${transaction.amount.total}</b>
 				</td>
 			</tr>
 			</table>
-			
-			 
-
             </div>
+           
           </div>
         </section>
         <!--================End Checkout Area =================-->
@@ -164,7 +145,6 @@
     <!-- Search model end -->
     
     <!-- JS here -->
-  
 
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- Jquery, Popper, Bootstrap -->

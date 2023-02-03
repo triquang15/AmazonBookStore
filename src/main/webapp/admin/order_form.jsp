@@ -50,24 +50,58 @@
                       <input type="text" value="${order.orderDate}" class="form-control" readonly="readonly"/>
                     </div>
                     
-                    <label>Recipient Name:</label>
+                    <label>First Name:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text"  name="recipientName" value="${order.recipientName}" size="45" class="form-control" placeholder="Recipient Name"/>
+                      <input type="text" id="firstname" name="firstname" value="${order.firstname}" size="45" class="form-control" placeholder="First Name"/>
+                    </div>
+                    
+                     <label>Last Name:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="lastname" name="lastname" value="${order.lastname}" size="45" class="form-control" placeholder="Last Name"/>
                     </div>
                     
                     <label>Phone:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text" name="recipientPhone" value="${order.recipientPhone}" size="45" class="form-control" placeholder="Phone"/>
+                      <input type="text" id="phone" name="phone" value="${order.phone}" size="45" class="form-control" placeholder="Phone"/>
                     </div>
-                    <label>Ship To:</label>
+                    <label>Address Line 1:</label>
                     <div class="input-group input-group-outline mb-3">  
-                      <input type="text"  name="shippingAddress" value="${order.shippingAddress}" size="45" class="form-control" placeholder="Ship to"/>
+                      <input type="text" id="addressLine1" name="addressLine1" value="${order.addressLine1}" size="45" class="form-control" placeholder="Address Line 1"/>
+                    </div>
+                    <label>Address Line 2:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="addressLine2" name="addressLine2" value="${order.addressLine2}" size="45" class="form-control" placeholder="Address Line 2"/>
+                    </div>
+                    
+                    <label>City:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="city" name="city" value="${order.city}" size="45" class="form-control" placeholder="City"/>
+                    </div>
+                    
+                    <label>State:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="state" name="state" value="${order.state}" size="45" class="form-control" placeholder="State"/>
+                    </div>
+                    
+                    <label>Zip Code:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <input type="text" id="zipcode" name="zipcode" value="${order.zipcode}" size="45" class="form-control" placeholder="Zip Code"/>
+                    </div>
+                    
+                    <label>Country:</label>
+                    <div class="input-group input-group-outline mb-3">  
+                      <select class="form-select" name="country" id="country">
+                     		<c:forEach items="${mapCountries }" var="country">
+                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+                     		</c:forEach>
+                     	</select>
                     </div>
                     
                     <label>Payment Method:</label>
                     <div class="input-group input-group-outline mb-3">  
                      <select name="paymentMethod"  class="form-select">
-						<option value="Cash On Delivery">Cash On Delivery</option>
+						<option value="Cash On Delivery" <c:if test="${order.paymentMethod eq 'Cash On Delivery' }">selected='selected'</c:if> >Cash On Delivery</option>
+						<option value="PayPal" <c:if test="${order.paymentMethod eq 'PayPal' }">selected='selected'</c:if>>PayPal</option>
 					</select>
                     </div>
                     
@@ -93,6 +127,8 @@
 			      <th scope="col">Price</th>
 			      <th scope="col">Quantity</th>
 			      <th scope="col">Subtotal</th>
+			      <th scope="col">Tax</th>
+			      <th scope="col">Shipping Fee</th>
 			      <th scope="col">Action</th>
 			    </tr>
 			  </thead>
@@ -106,9 +142,11 @@
 						$${orderDetail.book.price}</td>
 					<td>
 						<input type="hidden" name="bookId" value="${orderDetail.book.bookId}" />
-						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="5" />
+						<input type="text" name="quantity${status.index + 1}" value="${orderDetail.quantity}" size="3" />
 					</td>
 					<td>$${orderDetail.subtotal}</td>
+					<td><input type="text" size="3" name="tax" id="tax" value="${order.tax }" /></td>
+					<td><input type="text" size="3" name="shippingFee" id="shippingFee" value="${order.shippingFee }" /></td>
 					<td><a href="remove_book_from_order?id=${orderDetail.book.bookId}">Remove</a></td>
 			    </tr>			   
 			   </c:forEach>
@@ -166,21 +204,36 @@
 		$(document).ready(function() {
 			$("#orderForm").validate({
 				rules: {	
-					recipientName: "required",
-					recipientPhone: "required",
-					shippingAddress: "required",
+					firstname: "required",
+					lastname: "required",
+					phone: "required",
+					city: "required",
+					zipcode: "required",
+					state: "required",
+					country: "required",
+					addressLine1: "required",
+					addressLine2: "required",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: {
 							required: true, number: true, min: 1
 						},
-					</c:forEach>					
+					</c:forEach>	
+						
+					shippingFee: {required: true, number: true, min: 0},
+					tax: {required: true, number: true, min: 0}
 				},
 				
 				messages: {
-					recipientName: "Please enter recipient name",
-					recipientPhone: "Please enter recipient phone",
-					shippingAddress: "Please enter shipping address",
+					firstname: "Please enter first name",
+					lastname: "Please enter last name",
+					phone: "Please enter phone",
+					zipcode: "Please enter zipcode",
+					state: "Please enter state",
+					city: "Please enter city",
+					country: "Please select country",
+					addressLine1: "Please enter address line 1",
+					addressLine2: "Please enter address line 2",
 					
 					<c:forEach items="${order.orderDetails}" var="book" varStatus="status">
 						quantity${status.index + 1}: { 
@@ -188,7 +241,19 @@
 							number: "Quantity must be a number",
 							min: "Quantity must be greater than 0"
 						},
-					</c:forEach>						
+					</c:forEach>	
+						
+						shippingFee: {
+							required: "Please enter shipping fee",
+							number: "Shipping fee must be a number",
+							min: "Shipping fee must be greater than 0"
+						},
+						
+						tax: {
+							required: "Please enter tax",
+							number: "Tax must be a number",
+							min: "Tax must be greater than 0"
+						}
 				}
 			});
 			

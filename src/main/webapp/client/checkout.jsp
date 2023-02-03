@@ -62,23 +62,40 @@
                   <h3>Billing Address</h3>
                   <form class="row contact_form" id="orderForm" action="place_order" method="post">
                     <div class="col-md-6 form-group p_star">
-                      <input type="text" class="form-control" name="recipientName" value="${loggedCustomer.fullname}" placeholder="Recipient Name"/>
+                      <input type="text" class="form-control" name="firstname" value="${loggedCustomer.firstname}" placeholder="First Name"/>
                     </div>
                     <div class="col-md-6 form-group p_star">
-                      <input type="text" class="form-control" name="recipientPhone" value="${loggedCustomer.phone}" placeholder="Recipient Phone"/>                   
+                      <input type="text" class="form-control" name="lastname" value="${loggedCustomer.lastname}" placeholder="Last Name"/>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                      <input type="text" class="form-control" name="phone" value="${loggedCustomer.phone}" placeholder="Phone"/>                   
                     </div>
                     <div class="col-md-12 form-group">
-                      <input type="text" class="form-control" name="address" value="${loggedCustomer.address}" placeholder="Address" />
+                      <input type="text" class="form-control" name="addressLine1" value="${loggedCustomer.addressLine1}" placeholder="Address Line 1" />
                     </div>
+                    
+                     <div class="col-md-12 form-group">
+                      <input type="text" class="form-control" name="addressLine2" value="${loggedCustomer.addressLine2}" placeholder="Address Line 2" />
+                    </div>
+                    
                     <div class="col-md-6 form-group p_star">
                       <input type="text" class="form-control" name="city" value="${loggedCustomer.city}" placeholder="City" />
                     </div>
+                    
+                    <div class="col-md-6 form-group p_star">
+                      <input type="text" class="form-control" name="state" value="${loggedCustomer.state}" placeholder="State" />
+                    </div>
+                    
                     <div class="col-md-6 form-group p_star">
                       <input type="text" class="form-control" name="zipcode" value="${loggedCustomer.zipcode}" placeholder="Zip Code" />
                     </div>
                     
                     <div class="col-md-12 form-group p_star">
-                      <input type="text" class="form-control" name="country" value="${loggedCustomer.country}" placeholder="Country" />
+                       <select class="form-select" size="3" aria-label="size 3 select example" name="country" id="country">
+				                     		<c:forEach items="${mapCountries }" var="country">
+				                     			<option value="${country.value }" <c:if test='${loggedCustomer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
+				                     		</c:forEach>
+				                     	</select>
                     </div>
                    
                   
@@ -87,36 +104,37 @@
                   <div class="order_box">
                     <h2>Your Order</h2>
                     <ul class="list">
-                      <li>
-                        <a href="#">Product
-                          <span>Total</span>
-                        </a>
-                      </li>
-                      
+                     
                       <c:forEach items="${cart.items}" var="item">
                       <li>
                         <a href="#">${item.key.title}
-                          <span class="middle">x ${cart.totalQuantity}</span>
+                          <span class="middle">x ${item.value}</span>
                           <span class="last">$${item.key.price}</span>
                         </a>
-                      </li>
+                      </li>      
+                      
                       </c:forEach>
                      
                     </ul>
                     <ul class="list list_2">
                       <li>
                         <a href="#">Subtotal
-                          <span>$${item.value * item.key.price}</span>
+                          <span>$${cart.totalAmount}</span>
                         </a>
                       </li>
                       <li>
-                        <a href="#">Shipping
-                          <span>Free</span>
+                        <a href="#">Shipping Fee
+                          <span>$${shippingFee}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">Tax
+                          <span>$${tax}</span>
                         </a>
                       </li>
                       <li>
                         <a href="#">Total
-                          <span>$${cart.totalAmount}</span>
+                          <span>$${total}</span>
                         </a>
                       </li>
                     </ul>
@@ -127,22 +145,13 @@
                         <label for="f-option5">Check payments</label>
                         <select name="paymentMethod" class="form-select">
 							<option value="Cash On Delivery">Cash On Delivery</option>
+							<option value="PayPal">PayPal</option>
 						</select>
                       </div>
                    
                     </div>
                     <br><br>
-                  
-                    <div class="payment_item active">
-                      <div class="radion_btn">
-                        <input type="radio" id="f-option6" name="selector" />
-                        <label for="f-option6">Paypal </label>
-                       
-                        <div class="check"></div>
-                      </div>
-                    
-                    </div>
-                  
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn primary checkout_btn_1" type="submit">Complete Checkout</button>
                   </div>
                 </div>
@@ -175,19 +184,25 @@
 		$(document).ready(function() {
 			$("#orderForm").validate({
 				rules: {
-					recipientName: "required",
-					recipientPhone: "required",
-					address: "required",
+					firstname: "required",
+					lastname: "required",
+					phone: "required",
+					addressLine1: "required",
+					addressLine2: "required",
 					city: "required",
+					state: "required",
 					zipcode: "required",
 					country: "required",
 				},
 				
 				messages: {
-					recipientName: "Please enter recipient name",
-					recipientPhone: "Please enter phone number",
-					address: "Please enter street address",
+					firstname: "Please enter first name",
+					lastname: "Please enter last name",
+					phone: "Please enter phone number",
+					addressLine1: "Please enter street addressLine1",
+					addressLine2: "Please enter street addressLine1",
 					city: "Please enter city",
+					state: "Please enter state",
 					zipcode: "Please enter zip code",
 					country: "Please enter country",					
 				}

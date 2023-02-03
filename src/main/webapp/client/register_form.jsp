@@ -102,7 +102,7 @@
                                             placeholder="Zip Code">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                       <select class="form-select" name="country" id="country">
+                                       <select class="form-select" size="3" aria-label="size 3 select example" name="country" id="country">
 				                     		<c:forEach items="${mapCountries }" var="country">
 				                     			<option value="${country.value }" <c:if test='${customer.country eq country.value}'>selected='selected'</c:if> >${country.key } </option>
 				                     		</c:forEach>

@@ -14,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.devteam.client.shoppingcart.ShoppingCart;
+import com.devteam.common.CommonUtility;
 import com.devteam.dao.OrderDAO;
 import com.devteam.entity.Book;
 import com.devteam.entity.BookOrder;
 import com.devteam.entity.Customer;
 import com.devteam.entity.OrderDetail;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.ShippingAddress;
 
 public class OrderService {
 	private OrderDAO orderDao;
@@ -56,23 +60,58 @@ public class OrderService {
 	}
 
 	public void showCheckoutForm() throws ServletException, IOException {
+		HttpSession httpSession = request.getSession();
+		ShoppingCart shoppingCart = (ShoppingCart) httpSession.getAttribute("cart");
+
+		float tax = shoppingCart.getTotalAmount() * 0.1f;
+		float shippingFee = shoppingCart.getTotalQuantity() * 1.0f;
+		float total = shoppingCart.getTotalAmount() + tax + shippingFee;
+
+		httpSession.setAttribute("tax", tax);
+		httpSession.setAttribute("shippingFee", shippingFee);
+		httpSession.setAttribute("total", total);
+
+		CommonUtility.loadCountryList(request);
+
 		forwardToPage("client/checkout.jsp", request, response);
 	}
 
 	public void placeOrder() throws ServletException, IOException {
-		String recipientName = request.getParameter("recipientName");
-		String recipientPhone = request.getParameter("recipientPhone");
-		String address = request.getParameter("address");
+		String paymentMethod = request.getParameter("paymentMethod");
+		BookOrder order = readOrderInfor();
+
+		if (paymentMethod.equals("PayPal")) {
+			PaymentService paymentService = new PaymentService(request, response);
+			request.getSession().setAttribute("order4Paypal", order);
+			paymentService.authorizePayment(order);
+		} else {
+			placeOrderCOD(order);
+		}
+
+	}
+
+	private BookOrder readOrderInfor() {
+		String paymentMethod = request.getParameter("paymentMethod");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String phone = request.getParameter("phone");
+		String addressLine1 = request.getParameter("addressLine1");
+		String addressLine2 = request.getParameter("addressLine2");
 		String city = request.getParameter("city");
+		String state = request.getParameter("state");
 		String zipcode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
-		String paymentMethod = request.getParameter("paymentMethod");
-		String shippingAddress = address + ", " + city + ", " + zipcode + ", " + country;
 
 		BookOrder order = new BookOrder();
-		order.setRecipientName(recipientName);
-		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setFirstname(firstname);
+		order.setLastname(lastname);
+		order.setPhone(phone);
+		order.setState(state);
+		order.setCity(city);
+		order.setZipcode(zipcode);
+		order.setCountry(country);
+		order.setAddressLine1(addressLine1);
+		order.setAddressLine2(addressLine2);
 		order.setPaymentMethod(paymentMethod);
 
 		HttpSession session = request.getSession();
@@ -98,17 +137,30 @@ public class OrderService {
 			orderDetail.setSubtotal(subtotal);
 
 			orderDetails.add(orderDetail);
+
 		}
 
 		order.setOrderDetails(orderDetails);
-		order.setTotal(shoppingCart.getTotalAmount());
 
-		orderDao.create(order);
+		float tax = (Float) session.getAttribute("tax");
+		float shippingFee = (Float) session.getAttribute("shippingFee");
+		float total = (Float) session.getAttribute("total");
 
-		shoppingCart.clear();
+		order.setSubtotal(shoppingCart.getTotalAmount());
+		order.setTax(tax);
+		order.setShippingFee(shippingFee);
+		order.setTotal(total);
+
+		return order;
+
+	}
+
+	private void placeOrderCOD(BookOrder order) throws ServletException, IOException {
+		saveOrder(order);
 
 		String message = "Thank you. Your order has been received.";
 		showMessageFrontend(message, request, response);
+
 	}
 
 	public void listOrderByCustomer() throws ServletException, IOException {
@@ -150,6 +202,7 @@ public class OrderService {
 			session.removeAttribute("NewBookPendingToAddToOrder");
 		}
 
+		CommonUtility.loadCountryList(request);
 		forwardToPage("order_form.jsp", request, response);
 	}
 
@@ -157,15 +210,33 @@ public class OrderService {
 		HttpSession session = request.getSession();
 		BookOrder order = (BookOrder) session.getAttribute("order");
 
-		String recipientName = request.getParameter("recipientName");
-		String recipientPhone = request.getParameter("recipientPhone");
-		String shippingAddress = request.getParameter("shippingAddress");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String phone = request.getParameter("phone");
+		String address1 = request.getParameter("addressLine1");
+		String address2 = request.getParameter("addressLine2");
+		String city = request.getParameter("city");
+		String state = request.getParameter("state");
+		String zipcode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
+
+		float shippingFee = Float.parseFloat(request.getParameter("shippingFee"));
+		float tax = Float.parseFloat(request.getParameter("tax"));
+
 		String paymentMethod = request.getParameter("paymentMethod");
 		String orderStatus = request.getParameter("orderStatus");
 
-		order.setRecipientName(recipientName);
-		order.setRecipientPhone(recipientPhone);
-		order.setShippingAddress(shippingAddress);
+		order.setFirstname(firstname);
+		order.setLastname(lastname);
+		order.setAddressLine2(address2);
+		order.setCity(city);
+		order.setState(state);
+		order.setShippingFee(shippingFee);
+		order.setTax(tax);
+		order.setZipcode(zipcode);
+		order.setCountry(country);
+		order.setPhone(phone);
+		order.setAddressLine1(address1);
 		order.setPaymentMethod(paymentMethod);
 		order.setStatus(orderStatus);
 
@@ -200,6 +271,10 @@ public class OrderService {
 			totalAmount += subtotal;
 		}
 
+		order.setSubtotal(totalAmount);
+		totalAmount += shippingFee;
+		totalAmount += tax;
+
 		order.setTotal(totalAmount);
 
 		orderDao.update(order);
@@ -224,5 +299,35 @@ public class OrderService {
 					+ ", or it might have been deleted by another admin.";
 			showMessageBackend(message, request, response);
 		}
+	}
+
+	public Integer proceedPaypal(Payment payment) {
+		BookOrder order = (BookOrder) request.getSession().getAttribute("order4Paypal");
+
+		ItemList itemList = payment.getTransactions().get(0).getItemList();
+		ShippingAddress shippingAddress = itemList.getShippingAddress();
+		String phoneNumber = itemList.getShippingPhoneNumber();
+		String recipientName = shippingAddress.getRecipientName();
+
+		String[] names = recipientName.split(" ");
+		order.setFirstname(names[0]);
+		order.setLastname(names[1]);
+		order.setAddressLine1(shippingAddress.getLine1());
+		order.setAddressLine2(shippingAddress.getLine2());
+		order.setCity(shippingAddress.getCity());
+		order.setState(shippingAddress.getState());
+		order.setCountry(shippingAddress.getCountryCode());
+		order.setPhone(phoneNumber);
+
+		return saveOrder(order);
+	}
+
+	private Integer saveOrder(BookOrder order) {
+		BookOrder savedOrder = orderDao.create(order);
+
+		ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
+		shoppingCart.clear();
+
+		return savedOrder.getOrderId();
 	}
 }
